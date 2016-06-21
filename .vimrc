@@ -1,57 +1,10 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
-set runtimepath+=$HOME/.vim/
 
 " Bundle -------------------------------------------------------------------{{{
 
+set runtimepath+=$HOME/.vim/
 execute pathogen#infect()
-"set rtp+=$HOME/.vim/bundle/Vundle.vim
-
-"call vundle#begin()
-
-"Plugin 'VundleVim/Vundle.vim'
-
-" navigation
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'rking/ag.vim'
-"Plugin 'FelikZ/ctrlp-py-matcher'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'kana/vim-textobj-user'
-"Plugin 'whatyouhide/vim-textobj-xmlattr'
-
-" csv
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'airblade/vim-gitgutter'
-
-" misc
-"Plugin 'tpope/vim-commentary'
-"Plugin 'tpope/vim-dispatch'
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'mtth/scratch.vim'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-obsession'
-
-" language
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'groenewege/vim-less'
-"Plugin 'digitaltoad/vim-pug'
-"Plugin 'PProvost/vim-ps1'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'mxw/vim-jsx'
-"Plugin 'nicklasos/vim-jsx-riot'
-"Plugin 'wavded/vim-stylus'
-
-" gui
-"Plugin 'Yggdroot/indentLine'
-"Plugin 'ap/vim-css-color'
-"Plugin 'chriskempson/base16-vim'
-"Plugin 'scrooloose/syntastic'
-
-" snippets
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
-
-"call vundle#end()
 
 " }}}
 
