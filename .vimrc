@@ -366,7 +366,8 @@ let g:ycm_filetype_specific_completion_to_disable = {
   \ 'gitcommit': 1,
   \ 'netrw': 1,
   \ 'html': 1,
-  \ 'help': 1
+  \ 'help': 1,
+  \ 'json': 1
   \}
 
 augroup ycm_typescript
