@@ -335,47 +335,47 @@ nmap <leader>b :Rex<CR>
 
 " YCM ----------------------------------------------------------------------{{{
 
-let g:ycm_register_as_syntastic_checker = 1
+" let g:ycm_register_as_syntastic_checker = 1
 
-" make ycm behave like syntastic, only with clang though....
-let g:ycm_error_symbol = 'E:'
-let g:ycm_warning_symbol = 'V:'
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 1
-let g:ycm_open_loclist_on_ycm_diags = 1
+" " make ycm behave like syntastic, only with clang though....
+" let g:ycm_error_symbol = 'E:'
+" let g:ycm_warning_symbol = 'V:'
+" let g:ycm_enable_diagnostic_signs = 1
+" let g:ycm_enable_diagnostic_highlighting = 1
+" let g:ycm_always_populate_location_list = 1
+" let g:ycm_open_loclist_on_ycm_diags = 1
 
-let g:ycm_server_use_vim_stdout = 1
-let g:ycm_server_log_level = 'critical'
+" let g:ycm_server_use_vim_stdout = 1
+" let g:ycm_server_log_level = 'critical'
 
-let g:ycm_goto_buffer_command = 'same-buffer'
-let g:ycm_filetype_white_list = { '*': 1 }
+" let g:ycm_goto_buffer_command = 'same-buffer'
+" let g:ycm_filetype_white_list = { '*': 1 }
 
-" remove tab navigation
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
+" " remove tab navigation
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
 
-" trigger completion on . for TypeScript
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
+" " trigger completion on . for TypeScript
+" if !exists('g:ycm_semantic_triggers')
+"   let g:ycm_semantic_triggers = {}
+" endif
 
-let g:ycm_semantic_triggers['typescript'] = ['.']
+" let g:ycm_semantic_triggers['typescript'] = ['.']
 
-let g:ycm_filetype_specific_completion_to_disable = {
-  \ 'gitcommit': 1,
-  \ 'netrw': 1,
-  \ 'html': 1,
-  \ 'help': 1
-  \}
+" let g:ycm_filetype_specific_completion_to_disable = {
+"   \ 'gitcommit': 1,
+"   \ 'netrw': 1,
+"   \ 'html': 1,
+"   \ 'help': 1
+"   \}
 
-augroup ycm_typescript
-  autocmd!
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>gt :YcmCompleter GoToDefinition<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>gr :YcmCompleter GoToReferences<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>st :YcmCompleter GetType<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>rr :YcmCompleter RefactorRename<space>
-augroup END
+" augroup ycm_typescript
+"   autocmd!
+"   autocmd FileType typescript nnoremap <silent> <buffer> <leader>gt :YcmCompleter GoToDefinition<cr>
+"   autocmd FileType typescript nnoremap <silent> <buffer> <leader>gr :YcmCompleter GoToReferences<cr>
+"   autocmd FileType typescript nnoremap <silent> <buffer> <leader>st :YcmCompleter GetType<cr>
+"   autocmd FileType typescript nnoremap <silent> <buffer> <leader>rr :YcmCompleter RefactorRename<space>
+" augroup END
 
 "  }}}
 
@@ -436,6 +436,9 @@ map <leader>ss :Scratch<CR>
 " Syntastic ----------------------------------------------------------------{{{
 
 let g:syntastic_typescript_tsc_fname = ''           " Do not send params to tsc
+let g:syntastic_typescript_checkers = ['tsc', 'tslint']
+highlight SyntasticErrorSign guifg=#cc6666 guibg=#282a2e
+highlight SyntasticWarningSign guifg=#f0c674 guibg=#282a2e
 
 "  }}}
 
