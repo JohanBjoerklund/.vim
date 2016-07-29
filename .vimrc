@@ -208,7 +208,7 @@ set lazyredraw      "might improve scroll performance
 set colorcolumn=80  "show 80 column makr
 set background=dark
 set hidden
-colorscheme base16-tomorrow
+colorscheme base16-tomorrow-night
 
 if has('breakindent')
   silent! set breakindent
