@@ -284,9 +284,6 @@ set cpo+=$
 
 let g:ag_lhandler="topleft lopen 20"
 
-" nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
-" nnoremap <leader>gg :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
-
 "  }}}
 
 " CtrlP --------------------------------------------------------------------{{{
