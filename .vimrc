@@ -248,6 +248,13 @@ set foldcolumn=0        "do not show fold
 
 "  }}}
 
+" Mac ----------------------------------------------------------------------{{{
+
+if has("gui_macvim")
+  set macmeta
+endif
+
+"  }}}
 " Misc----------------------------------------------------------------------{{{
 
 syntax on
@@ -265,7 +272,6 @@ set incsearch      "find the next match as we type the search
 set ignorecase     "ignore case when searching
 set smartcase      "but case sensitve if expression contains capital letters
 set gdefault       "substitue globally by default, no need for /g
-set backspace=indent,eol,start  "allow backspacing over everything in insert mode
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
 set wildmenu                    "enable ctrl-n and ctrl-p to scroll thru match
@@ -283,9 +289,6 @@ set cpo+=$
 " Ag -----------------------------------------------------------------------{{{
 
 let g:ag_lhandler="topleft lopen 20"
-
-" nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cword>")) . " ."<cr>:copen<cr>
-" nnoremap <leader>gg :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 "  }}}
 
@@ -323,8 +326,8 @@ nnoremap <leader>gp <Plug>GitGutterPreviewHunk
 
 " Netrw --------------------------------------------------------------------{{{
 
-let g:netrw_liststyle=0
 let g:netrw_altfile=1
+let g:netrw_liststyle=0
 let g:netrw_banner=0
 let g:netrw_winisze=-28
 let g:netrw_bufsettings= 'nomodifiable nomodified readonly nobuflisted norwrap nonumber'
@@ -468,6 +471,21 @@ function! s:AlternateFile()
 endfunction
 command! A call s:AlternateFile()
 
+nnoremap <silent> <leader>q :call <SID>QuickFixToggle()<cr>
+let g:quickfix_is_open = 0
+
+function! s:QuickFixToggle()
+  if g:quickfix_is_open
+    cclose
+    let g:quickfix_is_open = 0
+    execute g:quickfix_return_to_window . "wincmd w"
+  else
+    let g:quickfix_return_to_window = winnr()
+    copen
+    let g:quickfix_is_open = 1
+endif
+endfunction
+
 " }}}
 
 " Events -------------------------------------------------------------------{{{
@@ -594,17 +612,3 @@ endif
 
 " }}}
 
-nnoremap <silent> <leader>q :call <SID>QuickFixToggle()<cr>
-let g:quickfix_is_open = 0
-
-function! s:QuickFixToggle()
-  if g:quickfix_is_open
-    cclose
-    let g:quickfix_is_open = 0
-    execute g:quickfix_return_to_window . "wincmd w"
-  else
-    let g:quickfix_return_to_window = winnr()
-    copen
-    let g:quickfix_is_open = 1
-endif
-endfunction
