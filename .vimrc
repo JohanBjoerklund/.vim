@@ -368,10 +368,18 @@ let g:ycm_filetype_specific_completion_to_disable = {
 
 augroup ycm_typescript
   autocmd!
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>gt :YcmCompleter GoToDefinition<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>gr :YcmCompleter GoToReferences<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>st :YcmCompleter GetType<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <leader>rr :YcmCompleter RefactorRename<space>
+  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>d :YcmCompleter GoToDefinition<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>r :YcmCompleter GoToReferences<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>t :YcmCompleter GoToType<cr>
+  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>rr :YcmCompleter RefactorRename<space>
+augroup END
+
+augroup ycm_javascript
+  autocmd!
+  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>d :YcmCompleter GoToDefinition<cr>
+  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>r :YcmCompleter GoToReferences<cr>
+  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>t :YcmCompleter GoTo<cr>
+  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>rr :YcmCompleter RefactorRename<space>
 augroup END
 
 "  }}}
@@ -427,6 +435,12 @@ augroup END
 " Scratch ------------------------------------------------------------------{{{
 
 map <leader>ss :Scratch<CR>
+
+"  }}}
+
+" Scratch ------------------------------------------------------------------{{{
+
+let g:startify_session_dir = "~/.vim/session"
 
 "  }}}
 
