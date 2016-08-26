@@ -571,17 +571,7 @@ let g:currentmode={
         \ '!'  : 'Sh',
 	\}
 
-function! DoHightlight(mode)
-  if (a:mode =~# '\v(n|no)')
-      highlight Mode ctermbg=02 ctermfg=04 guibg=#373b41 guifg=#b5bd68 gui=none
-  elseif (a:mode =~# '\v(v|V)' || g:currentmode[a:mode] ==# 'V')
-      highlight Mode ctermbg=02 ctermfg=04 guibg=#373b41 guifg=#de935f gui=none
-  elseif (a:mode ==# 'i')
-      highlight Mode ctermbg=02 ctermfg=04 guibg=#373b41 guifg=#81a2be gui=none
-  else
-      highlight Mode ctermbg=02 ctermfg=04 guibg=#373b41 guifg=#b5bd68 gui=none
-  endif
-
+function! DoHightlight()
   return ''
 endfunction
 
@@ -596,7 +586,7 @@ function! StatusGit()
         endif
     endfor
 
-    let git = join(l:ret, ' ') . 'git:' . fugitive#head()
+    let git = join(l:ret, ' ') . 'git:' . fugitive#head() . ' » '
 
     return fugitive#head() != '' && winwidth('.') > 70 ? git : ''
 endfunction
@@ -617,20 +607,17 @@ function! Right(show)
   return a:show ?  '»' : ''
 endfunction
 
-set statusline=%{DoHightlight(mode())}\ %*                      " hl arrows
-set statusline+=%{toupper(g:currentmode[mode()])}\ %*           " show mode
-set statusline+=%#Mode#%{Right(1)}%#Statusline#\ %*             " divider
-set statusline+=%{StatusGit()}\ %*                              " Show got status
-set statusline+=%#Mode#%{Right(1)}%#Statusline#\ %*             " divider
-set statusline+=%-1f                                            " show file
+set statusline=%{DoHightlight()}\ %*                      " hl arrows
+set statusline+=%{StatusGit()}%*                              " Show got status
+set statusline+=%f                                            " show file
 
 set statusline+=%=                                              " swith to RHS
 
-set statusline+=%#Mode#%{Left(&modified)}%#Statusline#\ %*      " divider
+set statusline+=%{Left(&modified)}\ %*      " divider
 set statusline+=%{IsModified()}\ %*                             " buf status
-set statusline+=%#Mode#%{Left(1)}%#Statusline#\ %*              " divider
+set statusline+=%{Left(1)}\ %*              " divider
 set statusline+=%2c\ %*                                         " col nr
-set statusline+=%#Mode#%{Left(1)}%#Statusline#\ %*              " divider
+set statusline+=%{Left(1)}\ %*              " divider
 set statusline+=%*w:%{WindowNumber()}\ %*                       " win nr
 
 "  }}}
@@ -642,4 +629,23 @@ if filereadable(glob('$HOME/.vimrc.local'))
 endif
 
 " }}}
+
+" Cursor -------------------------------------------------------------------{{{
+set gcr=a:block
+
+" mode aware cursors
+set gcr+=o:hor50-Cursor
+set gcr+=n:Cursor
+set gcr+=i-ci-sm:InsertCursor
+set gcr+=r-cr:ReplaceCursor-hor20
+set gcr+=c:CommandCursor
+set gcr+=v-ve:VisualCursor
+
+set gcr+=a:blinkon0
+
+hi InsertCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=04  guibg=#81a2be
+hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=09  guibg=#de935f
+hi ReplaceCursor ctermfg=15 guifg=#c5c8c6 ctermbg=01  guibg=#cc6666
+hi CommandCursor ctermfg=15 guifg=#c5c8c6 ctermbg=02  guibg=#b5bd68
+"  }}}
 
