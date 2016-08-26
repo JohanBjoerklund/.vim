@@ -58,6 +58,9 @@ vnoremap <s-l> g_
 "jump to last change
 nnoremap gI `.
 
+" backspace to previous file
+nnoremap <BS> <C-^>
+
 "  }}}
 
 " Errors -------------------------------------------------------------------{{{
@@ -92,7 +95,8 @@ endif
 
 " Insertmode text manipulation ---------------------------------------------{{{
 
-inoremap <c-u> <esc>viw<S-U>i
+" Uppercas current word
+inoremap <C-u> <esc>viw<S-U>i
 
 "  }}}
 
@@ -235,7 +239,7 @@ set shellslash      "use forwards slashes
 
 set history=1000        "store 1000 commandline entries
 set dir^=$TMP
-set dir^=$HOME/.vimswap//
+set noswapfile          "swap files are annoying
 
 "  }}}
 
@@ -255,6 +259,7 @@ if has("gui_macvim")
 endif
 
 "  }}}
+
 " Misc----------------------------------------------------------------------{{{
 
 syntax on
@@ -276,7 +281,21 @@ set gdefault       "substitue globally by default, no need for /g
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
 set wildmenu                    "enable ctrl-n and ctrl-p to scroll thru match
 "stuff to ignore when tab completing
-set wildignore=*.o,*.obj,*.sou,*.dll,*.hg,*.svn,.git,.gitignore,*~,*.bmp,*.gif,*.jpeg,*.jpg,*.png,*.exe
+set wildignore+=*.o
+set wildignore+=*.obj
+set wildignore+=*.sou
+set wildignore+=*.dll
+set wildignore+=*.hg
+set wildignore+=*.svn
+set wildignore+=.git
+set wildignore+=.gitignore
+set wildignore+=*~
+set wildignore+=*.bmp
+set wildignore+=*.gif
+set wildignore+=*.jpeg
+set wildignore+=*.jpg
+set wildignore+=*.png
+set wildignore+=*.exe
 
 set cpo+=$
 
@@ -301,9 +320,7 @@ else
     let g:ctrlp_user_command = has('win32') ? 'dir %s /-n /b /s /a-d' : 'find %s -type f'
 endif
 
-if has('python')
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_by_filename = 1
