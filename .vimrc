@@ -330,6 +330,34 @@ let g:ctrlp_lazy_update = 350
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_reuse_window = 'netrw\|help'
 
+function! CtrlP_main_status(...)
+  let regex = a:3 ? '%2*regex %*' : ''
+  let prv = '%#StatusLineNC# '.a:4.' %*'
+  let item = ' ' . (a:5 == 'mru files' ? 'mru' : a:5) . ' '
+  let nxt = '%#StatusLineNC# '.a:6.' %*'
+  let byfname = '%2* '.a:2.' %*'
+  let dir = '%#User3# ← %*%#StatusLineNC#' . fnamemodify(getcwd(), ':~') . '%* '
+
+  " only outputs current mode
+  retu ' %#User1#»%*' . item . '%#User1#«%* ' . '%=%<' . dir
+
+endfunction
+
+function! CtrlP_progress_status(...)
+  let len = '%#Function# '.a:1.' %*'
+  let dir = ' %=%<%#LineNr# '.getcwd().' %*'
+  retu len.dir
+endfunction
+
+hi CtrlP_Front  ctermfg=07 guifg=#c5c8c6  ctermbg=10  guibg=#282a2e
+hi CtrlP_IFront ctermfg=10  guifg=#282a2e  ctermbg=07 guibg=#c5c8c6
+hi CtrlP_Base  ctermfg=12  guifg=#b4b7b4 ctermbg=11 guibg=#373b41
+
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlP_main_status',
+  \ 'prog': 'CtrlP_progress_status'
+  \}
+
 nmap <leader>f :CtrlP<CR><C-\>w
 nmap <leader>d :CtrlPDir<CR>
 
@@ -647,9 +675,10 @@ endif
 " }}}
 
 " Cursor -------------------------------------------------------------------{{{
+
 set gcr=a:block
 
-" mode aware cursors
+" mode awareness
 set gcr+=o:hor50-Cursor
 set gcr+=n:Cursor
 set gcr+=i-ci-sm:InsertCursor
@@ -663,5 +692,12 @@ hi InsertCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=04  guibg=#81a2be
 hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=09  guibg=#de935f
 hi ReplaceCursor ctermfg=15 guifg=#c5c8c6 ctermbg=01  guibg=#cc6666
 hi CommandCursor ctermfg=15 guifg=#c5c8c6 ctermbg=02  guibg=#b5bd68
+
+augroup cursorline
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 "  }}}
 
