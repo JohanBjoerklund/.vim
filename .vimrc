@@ -567,12 +567,6 @@ function! Status(winnr)
     endif
   endfunction
 
-  " window
-  " let stat .= Color(1, 5,  a:winnr . '…' )
-  let stat .= Color(1, 5,'[' . a:winnr . ']' )
-
-  " column
-  let stat .= '%1*' . (col(".") / 100 >= 1 ? '%v ' : ' %2v ') . '%*'
 
   " file
   let stat .= Color(active, 4, active ? ' »' : ' «')
@@ -588,6 +582,19 @@ function! Status(winnr)
 
   let stat .= ' ' . Color(active, 4, active ? '«' : '»')
 
+  " git branch
+  if exists('*fugitive#head')
+    let head = fugitive#head()
+
+    if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
+      call fugitive#detect(getcwd())
+      let head = fugitive#head()
+    endif
+  endif
+
+  if !empty(head)
+    let stat .=  Color(active, 3, ' ⎇  ') . head
+  endif
   " file modified
   let stat .= Color(active, 2, modified ? ' +' : '')
 
@@ -602,22 +609,13 @@ function! Status(winnr)
   " right side
   let stat .= '%='
 
-  " git branch
-  if exists('*fugitive#head')
-    let head = fugitive#head()
 
-    if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
-      call fugitive#detect(getcwd())
-      let head = fugitive#head()
-    endif
-  endif
+  " column
+  let stat .= '%1*' . (col(".") / 100 >= 1 ? '%v ' : ' %2v ') . '%*'
 
-  if !empty(head)
-    let stat .= Color(active, 3, ' ← ') . head . ' '
-  endif
-
-
-  " let stat .= Color(1, 5, '%{' . tabpagewinnr(tabpagenr()) . '}' )
+  " window
+  " let stat .= Color(1, 5,' • ' . a:winnr)
+  let stat .= Color(1, 5,' Nº ' . a:winnr)
 
   return stat
 endfunction
