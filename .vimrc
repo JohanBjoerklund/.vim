@@ -39,6 +39,10 @@ inoremap <right> <nop>
 nnoremap <Tab> <C-W>w
 nnoremap <S-Tab> <C-W>W
 
+" Center window on next match on search
+nnoremap N Nzz
+nnoremap n nzz
+
 " map leader<number> to jump to window
 let i = 1
 while i <= 9
@@ -49,10 +53,10 @@ endwhile
 nnoremap j gj
 nnoremap k gk
 
+" jump to first character on line
 nnoremap <s-h> ^
+" jump to last character on line
 nnoremap <s-l> $
-vnoremap <s-l> g_
-
 vnoremap <s-l> g_
 
 "jump to last change
@@ -163,6 +167,7 @@ augroup END
 augroup ft_vimscript
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
+  autocmd Filetype vim setlocal modelines=1
 augroup END
 
 " }}}
@@ -200,18 +205,25 @@ endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
-set relativenumber
-set number
-set noshowmode      "do not show mode at bottom
-set showcmd         "show incomplete cmds down the bottom
-set hlsearch        "hilight searches by default
-set cursorline      "highlight the line with the cursor
-set showbreak=...   "show line breaks as '...'
-set ttyfast         "might improve scroll performance
-set lazyredraw      "might improve scroll performance
-set colorcolumn=80  "show 80 column makr
+set relativenumber  " show relative liene numbers"
+set number          " show line numbers"
+set noshowmode      " do not show mode at bottom
+set showcmd         " show incomplete cmds down the bottom
+set hlsearch        " hilight searches by default
+set cursorline      " highlight the line with the cursor
+set showbreak=...   " show line breaks as '...'
+set ttyfast         " might improve scroll performance
+set lazyredraw      " might improve scroll performance
+set colorcolumn=80  " show 80 column makr
 set background=dark
 set hidden
+set t_Co=256      " enable 256 color support"
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 colorscheme base16-tomorrow-night
 
 if has('breakindent')
@@ -263,24 +275,21 @@ endif
 " Misc----------------------------------------------------------------------{{{
 
 syntax on
-filetype on
 filetype plugin indent on
-filetype indent on
 
-set wrap linebreak nolist   "wrap lines, wrap at wodrbreaks,
-set autoread                "automatically load buffer when file has been edited outside of VIM
+set wrap linebreak nolist   " wrap lines, wrap at wodrbreaks,
+set autoread                " auto-load buffer when file was edited outside of VIM
 set shiftwidth=2
 set softtabstop=2
-set expandtab
-set autoindent
-set incsearch      "find the next match as we type the search
-set ignorecase     "ignore case when searching
-set smartcase      "but case sensitve if expression contains capital letters
-set gdefault       "substitue globally by default, no need for /g
+set expandtab               " tabs are spaces"
+set autoindent              " looka at it stoopid
+set incsearch               " find the next match as we type the search
+set ignorecase              " ignore case when searching
+set smartcase               " but case sensitve if expression contains capital letters
+set gdefault                " substitue globally by default, no need for /g
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
-set wildmenu                    "enable ctrl-n and ctrl-p to scroll thru match
-"stuff to ignore when tab completing
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru match
 set wildignore+=*.o
 set wildignore+=*.obj
 set wildignore+=*.sou
@@ -701,3 +710,4 @@ augroup END
 
 "  }}}
 
+" vim:foldmethod=marker:foldlevel=0
