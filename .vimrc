@@ -688,6 +688,18 @@ set gcr+=v-ve:VisualCursor
 
 set gcr+=a:blinkon0
 
+if &term =~ "screen-256color\\|xterm\\|rxvt"
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  else
+
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+
+endif
+
 hi InsertCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=04  guibg=#81a2be
 hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=16  guibg=#de935f
 hi ReplaceCursor ctermfg=15 guifg=#c5c8c6 ctermbg=01  guibg=#cc6666
