@@ -358,10 +358,6 @@ function! CtrlP_progress_status(...)
   retu len.dir
 endfunction
 
-hi CtrlP_Front  ctermfg=07 guifg=#c5c8c6  ctermbg=10  guibg=#282a2e
-hi CtrlP_IFront ctermfg=10  guifg=#282a2e  ctermbg=07 guibg=#c5c8c6
-hi CtrlP_Base  ctermfg=12  guifg=#b4b7b4 ctermbg=11 guibg=#373b41
-
 let g:ctrlp_status_func = {
   \ 'main': 'CtrlP_main_status',
   \ 'prog': 'CtrlP_progress_status'
@@ -646,13 +642,8 @@ function! Status(winnr)
   " right side
   let stat .= '%='
 
-
-  " column
-  let stat .= '%1*' . (col(".") / 100 >= 1 ? '%v ' : ' %2v ') . '%*'
-
   " window
-  " let stat .= Color(1, 5,' • ' . a:winnr)
-  let stat .= Color(1, 5,' Nº ' . a:winnr)
+  let stat .= Color(1, 1,' Nº ' . a:winnr)
 
   return stat
 endfunction
@@ -668,11 +659,11 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
 augroup END
 
-hi User1 ctermfg=33  guifg=#81a2be  ctermbg=15 guibg=#373b41 gui=bold
-hi User2 ctermfg=125 guifg=#cc6666  ctermbg=7  guibg=#373b41 gui=bold
-hi User3 ctermfg=64  guifg=#b5bd68  ctermbg=7  guibg=#373b41 gui=bold
-hi User4 ctermfg=37  guifg=#8abeb7  ctermbg=7  guibg=#373b41 gui=bold
-hi User5 ctermfg=37  guifg=#f0c674  ctermbg=7  guibg=#373b41 gui=bold
+hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41 gui=bold
+hi User2 ctermfg=01  guifg=#cc6666  ctermbg=19  guibg=#373b41 gui=bold
+hi User3 ctermfg=02  guifg=#b5bd68  ctermbg=19  guibg=#373b41 gui=bold
+hi User4 ctermfg=06  guifg=#8abeb7  ctermbg=19  guibg=#373b41 gui=bold
+hi User5 ctermfg=03  guifg=#f0c674  ctermbg=19  guibg=#373b41 gui=bold
 "  }}}
 
 " Local --------------------------------------------------------------------{{{
@@ -698,7 +689,7 @@ set gcr+=v-ve:VisualCursor
 set gcr+=a:blinkon0
 
 hi InsertCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=04  guibg=#81a2be
-hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=09  guibg=#de935f
+hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=16  guibg=#de935f
 hi ReplaceCursor ctermfg=15 guifg=#c5c8c6 ctermbg=01  guibg=#cc6666
 hi CommandCursor ctermfg=15 guifg=#c5c8c6 ctermbg=02  guibg=#b5bd68
 
