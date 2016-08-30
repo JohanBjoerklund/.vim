@@ -626,7 +626,7 @@ function! Status(winnr)
   endif
 
   if !empty(head)
-    let stat .=  Color(active, 3, ' λ  ') . head
+    let stat .=  Color(active, 3, '  λ ') . head
   endif
   " file modified
   let stat .= Color(active, 2, modified ? ' +' : '')
