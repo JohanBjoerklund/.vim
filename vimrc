@@ -4,7 +4,6 @@ set nocompatible
 " Bundle -------------------------------------------------------------------{{{
 
 set runtimepath+=$HOME/.vim/
-execute pathogen#infect()
 
 " }}}
 
