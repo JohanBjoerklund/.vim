@@ -658,11 +658,11 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
 augroup END
 
-hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41 gui=bold
-hi User2 ctermfg=01  guifg=#cc6666  ctermbg=19  guibg=#373b41 gui=bold
-hi User3 ctermfg=02  guifg=#b5bd68  ctermbg=19  guibg=#373b41 gui=bold
-hi User4 ctermfg=06  guifg=#8abeb7  ctermbg=19  guibg=#373b41 gui=bold
-hi User5 ctermfg=03  guifg=#f0c674  ctermbg=19  guibg=#373b41 gui=bold
+hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41
+hi User2 ctermfg=01  guifg=#cc6666  ctermbg=19  guibg=#373b41
+hi User3 ctermfg=02  guifg=#b5bd68  ctermbg=19  guibg=#373b41
+hi User4 ctermfg=06  guifg=#8abeb7  ctermbg=19  guibg=#373b41
+hi User5 ctermfg=03  guifg=#f0c674  ctermbg=19  guibg=#373b41
 "  }}}
 
 " Local --------------------------------------------------------------------{{{
