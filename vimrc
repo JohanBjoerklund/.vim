@@ -197,9 +197,9 @@ au BufNewFile,BufRead .babelrc,.jshintrc setlocal ft=json
 " GUI ----------------------------------------------------------------------{{{
 
 if has('win32')
-  set guifont=Droid_Sans_Mono:h8
+  set guifont=hack:h8
 else
-  set guifont=Droid_Sans_Mono:h11
+  set guifont=hack:h11
 endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
