@@ -224,6 +224,8 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 colorscheme base16-tomorrow-night
+" let macvim_skip_colorscheme=1
+" colorscheme tender
 
 if has('breakindent')
   silent! set breakindent
@@ -493,18 +495,18 @@ map <leader>ss :Scratch<CR>
 
 "  }}}
 
-" Session ------------------------------------------------------------------{{{
-
-let g:startify_session_dir = "~/.vim/session"
-
-"  }}}
-
 " Syntastic ----------------------------------------------------------------{{{
 
 let g:syntastic_typescript_tsc_fname = ''           " Do not send params to tsc
 let g:syntastic_typescript_checkers = ['tsc', 'tslint']
 highlight SyntasticErrorSign guifg=#cc6666 guibg=#282a2e
 highlight SyntasticWarningSign guifg=#f0c674 guibg=#282a2e
+
+"  }}}
+
+" UltiSnips ------------------------------------------------------------------{{{
+
+let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 "  }}}
 

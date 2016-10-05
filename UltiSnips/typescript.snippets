@@ -1,0 +1,64 @@
+extends javascript
+
+snippet cclass "Create class" !b
+
+class $1 {
+
+  $0
+
+}
+
+endsnippet
+
+snippet class "Create class (ctor)" !b
+
+class $1 {
+
+  constructor($2) {
+    $0
+  }
+
+}
+
+endsnippet
+
+snippet "export c" "Create class (export)" !b
+
+export class $1 {
+
+  $0
+
+}
+
+endsnippet
+
+snippet "export cc" "Create class (export) (ctor)" !b
+
+class $1 {
+
+  constructor($2) {
+    $0
+  }
+
+}
+
+endsnippet
+
+snippet "export f" "Create function (export)" !b
+
+export function $1() {
+
+  $0
+
+}
+
+endsnippet
+
+snippet ctor "Create constructor" !b
+
+constructor($1) {
+
+  $0
+
+}
+endsnippet
