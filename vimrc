@@ -441,70 +441,37 @@ augroup END
 
 "  }}}
 
-" OmniSharp ----------------------------------------------------------------{{{
-
-" let g:OmniSharp_selctor_ui = 'ctrlp'
-" let g:OmniSharp_server_type = 'roslyn'
-
-" augroup omnisharp_commands
-"   autocmd!
-
-"   autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-"   autocmd FileType cs setlocal <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-
-"   autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-
-"   autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-
-"   autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-"   autocmd FileType cs nnoremap <leader>f :OmniSharpGoToDefinition<cr>
-"   autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementation<cr>
-"   autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-"   autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
-"   autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-"   autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
-
-"   autocmd FileType cs nnoremap <leader>x :OmniSharpFixIssue<cr>
-"   autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
-"   autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
-"   autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
-
-"   autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
-
-"   autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
-
-" augroup END
-
-" set updatetime=500
-
-" set cmdheight=2
-
-" nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
-" vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
-
-" nnoremap <leader>nm :OmniSharpRename<cr>
-
-" set hidden
-"  }}}
-
 " Scratch ------------------------------------------------------------------{{{
 
 map <leader>ss :Scratch<CR>
 
 "  }}}
 
-" Syntastic ----------------------------------------------------------------{{{
+" NeoMake -------------------------------------------------------------------{{{
 
-let g:syntastic_typescript_tsc_fname = ''           " Do not send params to tsc
-let g:syntastic_typescript_checkers = ['tsc', 'tslint']
-highlight SyntasticErrorSign guifg=#cc6666 guibg=#282a2e
-highlight SyntasticWarningSign guifg=#f0c674 guibg=#282a2e
+au! BufWritePost * Neomake
+let g:neomake_typescript_tsc_maker = {
+    \ 'args': ['--noEmit'],
+    \ 'append_file': 0,
+    \ 'errorformat':
+        \ '%E%f %#(%l\,%c): error %m,' .
+        \ '%E%f %#(%l\,%c): %m,' .
+        \ '%Eerror %m,' .
+        \ '%C%\s%\+%m'
+        \}
+
+let g:neomake_typescript_tslint_maker = {
+    \ 'args': [
+        \ '%:p', '--format verbose'
+    \ ],
+    \ 'errorformat': '%f[%l\, %c]: %m'
+    \ }
+
 
 "  }}}
 
-" UltiSnips ------------------------------------------------------------------{{{
+" UltiSnips -----------------------------------------------------------------{{{
+
 
 let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
