@@ -315,12 +315,6 @@ set cpo+=$
 
 " Plugins ------------------------------------------------------------------{{{
 
-" Ag -----------------------------------------------------------------------{{{
-
-let g:ag_lhandler="topleft lopen 20"
-
-"  }}}
-
 " CtrlP --------------------------------------------------------------------{{{
 
 if executable('ag')
@@ -389,14 +383,6 @@ nmap <leader>b :Rex<CR>
 
 " YCM ----------------------------------------------------------------------{{{
 
-let g:ycm_register_as_syntastic_checker = 1
-
-" make ycm behave like syntastic, only with clang though....
-let g:ycm_error_symbol = 'E:'
-let g:ycm_warning_symbol = 'V:'
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 1
 let g:ycm_open_loclist_on_ycm_diags = 1
 
 let g:ycm_server_use_vim_stdout = 1
