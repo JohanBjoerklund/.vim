@@ -75,6 +75,7 @@ nnoremap <leader>cp :cp<cr>
 
 " General ------------------------------------------------------------------{{{
 
+inoremap jk <Esc>
 nnoremap <silent> <Esc> :noh<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
@@ -435,7 +436,7 @@ map <leader>ss :Scratch<CR>
 
 " NeoMake -------------------------------------------------------------------{{{
 
-au! BufWritePost * Neomake
+au! BufWritePost,BufRead * Neomake
 let g:neomake_typescript_tsc_maker = {
     \ 'args': ['--noEmit'],
     \ 'append_file': 0,
@@ -445,14 +446,6 @@ let g:neomake_typescript_tsc_maker = {
         \ '%Eerror %m,' .
         \ '%C%\s%\+%m'
         \}
-
-let g:neomake_typescript_tslint_maker = {
-    \ 'args': [
-        \ '%:p', '--format verbose'
-    \ ],
-    \ 'errorformat': '%f[%l\, %c]: %m'
-    \ }
-
 
 "  }}}
 
