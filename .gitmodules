@@ -92,3 +92,9 @@
 [submodule "pack/all/start/neomake"]
 	path = pack/all/start/neomake
 	url = https://github.com/neomake/neomake.git
+[submodule "pack/all/start/vim-elixir"]
+	path = pack/all/start/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "pack/all/start/vim-vinegar"]
+	path = pack/all/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar

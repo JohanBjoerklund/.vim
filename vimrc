@@ -34,10 +34,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" tab between windows
-nnoremap <Tab> <C-W>w
-nnoremap <S-Tab> <C-W>W
-
 " Center window on next match on search
 nnoremap N Nzz
 nnoremap n nzz
@@ -63,6 +59,11 @@ nnoremap gI `.
 
 " backspace to previous file
 nnoremap <BS> <C-^>
+
+" open buffer list
+nnoremap <leader>b :b <C-d>
+" jump to previously edited buffer
+nnoremap <leader>q :b#<C-r>
 
 "  }}}
 
@@ -279,6 +280,7 @@ endif
 syntax on
 filetype plugin indent on
 
+set backspace=indent,eol,start
 set wrap linebreak nolist   " wrap lines, wrap at wodrbreaks,
 set autoread                " auto-load buffer when file was edited outside of VIM
 set shiftwidth=2
@@ -378,8 +380,6 @@ let g:netrw_banner=0
 let g:netrw_winisze=-28
 let g:netrw_bufsettings= 'nomodifiable nomodified readonly nobuflisted norwrap nonumber'
 
-nmap <leader>b :Rex<CR>
-
 "  }}}
 
 " YCM ----------------------------------------------------------------------{{{
@@ -437,15 +437,6 @@ map <leader>ss :Scratch<CR>
 " NeoMake -------------------------------------------------------------------{{{
 
 au! BufWritePost,BufRead * Neomake
-let g:neomake_typescript_tsc_maker = {
-    \ 'args': ['--noEmit'],
-    \ 'append_file': 0,
-    \ 'errorformat':
-        \ '%E%f %#(%l\,%c): error %m,' .
-        \ '%E%f %#(%l\,%c): %m,' .
-        \ '%Eerror %m,' .
-        \ '%C%\s%\+%m'
-        \}
 
 "  }}}
 
