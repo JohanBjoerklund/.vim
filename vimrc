@@ -3,7 +3,7 @@ set nocompatible
 
 " Bundle -------------------------------------------------------------------{{{
 
-set runtimepath+=$HOME/.vim/
+" set runtimepath+=$HOME/.vim/
 
 " }}}
 
@@ -246,7 +246,7 @@ endif
 if has("unix")
     set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
 endif
-set shellslash      "use forwards slashes
+" set shellslash      "use forwards slashes
 
 "  }}}
 

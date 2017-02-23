@@ -86,9 +86,6 @@
 	path = pack/all/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
         ignore = untracked
-[submodule "pack/all/start/YouCompleteMe"]
-	path = pack/all/start/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule "pack/all/start/neomake"]
 	path = pack/all/start/neomake
 	url = https://github.com/neomake/neomake.git
@@ -98,3 +95,6 @@
 [submodule "pack/all/start/vim-vinegar"]
 	path = pack/all/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
+[submodule "pack\\all\\start\\html5"]
+	path = pack\\all\\start\\html5
+	url = https://github.com/othree/html5.vim.git
