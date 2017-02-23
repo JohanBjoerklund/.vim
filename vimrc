@@ -294,6 +294,7 @@ set smartcase               " but case sensitve if expression contains capital l
 set gdefault                " substitue globally by default, no need for /g
 
 set omnifunc=syntaxcomplete#Complete
+set tags=./tags,tags;$HOME
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru match
