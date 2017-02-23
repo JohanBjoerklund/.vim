@@ -246,6 +246,7 @@ endif
 if has("unix")
     set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
 endif
+" This breaks NeoMake on windows
 " set shellslash      "use forwards slashes
 
 "  }}}
@@ -291,6 +292,8 @@ set incsearch               " find the next match as we type the search
 set ignorecase              " ignore case when searching
 set smartcase               " but case sensitve if expression contains capital letters
 set gdefault                " substitue globally by default, no need for /g
+
+set omnifunc=syntaxcomplete#Complete
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru match
@@ -379,52 +382,6 @@ let g:netrw_liststyle=0
 let g:netrw_banner=0
 let g:netrw_winisze=-28
 let g:netrw_bufsettings= 'nomodifiable nomodified readonly nobuflisted norwrap nonumber'
-
-"  }}}
-
-" YCM ----------------------------------------------------------------------{{{
-
-let g:ycm_open_loclist_on_ycm_diags = 1
-
-let g:ycm_server_use_vim_stdout = 1
-let g:ycm_server_log_level = 'critical'
-
-let g:ycm_goto_buffer_command = 'same-buffer'
-let g:ycm_filetype_white_list = { '*': 1 }
-
-" remove tab navigation
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-
-" trigger completion on . for TypeScript
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-
-let g:ycm_semantic_triggers['typescript'] = ['.']
-
-let g:ycm_filetype_specific_completion_to_disable = {
-  \ 'gitcommit': 1,
-  \ 'netrw': 1,
-  \ 'html': 1,
-  \ 'help': 1
-  \}
-
-augroup ycm_typescript
-  autocmd!
-  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>d :YcmCompleter GoToDefinition<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>r :YcmCompleter GoToReferences<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>t :YcmCompleter GoToType<cr>
-  autocmd FileType typescript nnoremap <silent> <buffer> <localleader>rr :YcmCompleter RefactorRename<space>
-augroup END
-
-augroup ycm_javascript
-  autocmd!
-  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>d :YcmCompleter GoToDefinition<cr>
-  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>r :YcmCompleter GoToReferences<cr>
-  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>t :YcmCompleter GoTo<cr>
-  autocmd FileType javascript nnoremap <silent> <buffer> <localleader>rr :YcmCompleter RefactorRename<space>
-augroup END
 
 "  }}}
 
