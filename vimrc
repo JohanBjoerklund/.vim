@@ -247,7 +247,7 @@ if has("unix")
     set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
 endif
 " This breaks NeoMake on windows
-" set shellslash      "use forwards slashes
+set shellslash      "use forwards slashes
 
 "  }}}
 
