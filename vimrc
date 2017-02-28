@@ -313,6 +313,8 @@ set wildignore+=*.jpeg
 set wildignore+=*.jpg
 set wildignore+=*.png
 set wildignore+=*.exe
+set wildignore+=*/node_modules/*
+set wildignore+=*/elm-stuff/*
 
 set cpo+=$
 
@@ -373,6 +375,20 @@ nmap <leader>d :CtrlPDir<CR>
 " GitGutter ----------------------------------------------------------------{{{
 
 nnoremap <leader>gp <Plug>GitGutterPreviewHunk
+
+"  }}}
+
+" Gutentags ----------------------------------------------------------------{{{
+
+" let g:gutentags_ctags_exlude = []
+let g:gutentags_cache_dir = $HOME . '/.cache/tags'
+let g:gutentags_project_root = []
+
+call add(g:gutentags_project_root, 'elm')
+" let g:gutentags_project_info = []
+" call add(g:gutentags_project_info, {'type': 'elixir', 'glob': '*.ex*'})
+" call add(g:gutentags_project_info, {'type': 'elm', 'glob': '*.elm'})
+
 
 "  }}}
 
