@@ -104,3 +104,6 @@
 [submodule "pack/all/start/alchemist"]
 	path = pack/all/start/alchemist
 	url = https://github.com/slashmili/alchemist.vim.git
+[submodule "pack/all/start/vim-elixir"]
+	path = pack/all/start/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
