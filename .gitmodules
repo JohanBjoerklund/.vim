@@ -89,21 +89,28 @@
 [submodule "pack/all/start/neomake"]
 	path = pack/all/start/neomake
 	url = https://github.com/neomake/neomake.git
+        ignore = untracked
 [submodule "pack/all/start/vim-elixir"]
 	path = pack/all/start/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+        ignore = untracked
 [submodule "pack/all/start/vim-vinegar"]
 	path = pack/all/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar
+        ignore = untracked
 [submodule "pack\\all\\start\\html5"]
 	path = pack\\all\\start\\html5
 	url = https://github.com/othree/html5.vim.git
+        ignore = untracked
 [submodule "pack/all/start/elm"]
 	path = pack/all/start/elm
 	url = https://github.com/lambdatoast/elm.vim.git
+        ignore = untracked
 [submodule "pack/all/start/vim-gutentags"]
 	path = pack/all/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+        ignore = untracked
 [submodule "pack/all/start/alchemist"]
 	path = pack/all/start/alchemist
 	url = https://github.com/slashmili/alchemist.vim.git
+        ignore = untracked

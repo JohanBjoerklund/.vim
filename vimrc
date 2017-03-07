@@ -212,7 +212,8 @@ set noshowmode      " do not show mode at bottom
 set showcmd         " show incomplete cmds down the bottom
 set hlsearch        " hilight searches by default
 set cursorline      " highlight the line with the cursor
-set showbreak=...   " show line breaks as '...'
+" set showbreak=...   " show line breaks as '...'
+let &showbreak='↳ '     " show line breaks as '¬'
 set ttyfast         " might improve scroll performance
 set lazyredraw      " might improve scroll performance
 set colorcolumn=80  " show 80 column makr
@@ -554,6 +555,9 @@ function! Status(winnr)
   " right side
   let stat .= '%='
 
+  " generating tags
+  " let stat .= Color(active, 1, gutentags#statusline('Generating...'))
+  let stat .= gutentags#statusline('Generating...')
   " window
   let stat .= Color(1, 1,' Nº ' . a:winnr)
 
