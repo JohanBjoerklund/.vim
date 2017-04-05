@@ -202,7 +202,6 @@ if has('win32')
   set guifont=hack:h8
 else
   set guifont=hack:h11
-  " set guifont=Fira\ Code:h12
 endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
@@ -426,7 +425,7 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 " Commands -----------------------------------------------------------------{{{
 
 function! s:Functions()
-  set guifont=Fira\ Code:h12
+  set guifont=Fira\ Code:h11
 endfunction
 command! Functions call s:Functions()
 
