@@ -202,6 +202,7 @@ if has('win32')
   set guifont=hack:h8
 else
   set guifont=hack:h11
+  " set guifont=Fira\ Code:h12
 endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
@@ -272,6 +273,7 @@ set foldcolumn=0        "do not show fold
 
 if has("gui_macvim")
   set macmeta
+  set macligatures
 endif
 
 "  }}}
@@ -422,6 +424,21 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 "  }}}
 
 " Commands -----------------------------------------------------------------{{{
+
+function! s:Functions()
+  set guifont=Fira\ Code:h12
+endfunction
+command! Functions call s:Functions()
+
+function! s:Objects()
+  if has('win32')
+    set guifont=hack:h8
+  else
+    set guifont=hack:h11
+    " set guifont=Fira\ Code:h12
+  endif
+endfunction
+command! Objects call s:Objects()
 
 function! s:AlternateFile()
   let name = expand('%:r')
