@@ -434,7 +434,6 @@ function! s:Objects()
     set guifont=hack:h8
   else
     set guifont=hack:h11
-    " set guifont=Fira\ Code:h12
   endif
 endfunction
 command! Objects call s:Objects()
