@@ -107,6 +107,6 @@
 [submodule "pack/all/start/vim-elixir"]
 	path = pack/all/start/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
-[submodule "pack/all/start/tender"]
-	path = pack/all/start/tender
-	url = https://github.com/jacoborus/tender.vim.git
+[submodule "pack/all/start/ayu"]
+	path = pack/all/start/ayu
+	url = https://github.com/ayu-theme/ayu-vim.git

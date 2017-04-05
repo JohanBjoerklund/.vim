@@ -206,6 +206,7 @@ endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
+set termguicolors
 set relativenumber  " show relative liene numbers"
 set number          " show line numbers"
 set noshowmode      " do not show mode at bottom
