@@ -114,3 +114,6 @@
 	path = pack/all/start/alchemist
 	url = https://github.com/slashmili/alchemist.vim.git
         ignore = untracked
+[submodule "pack/all/start/ayu"]
+	path = pack/all/start/ayu
+	url = https://github.com/ayu-theme/ayu-vim.git

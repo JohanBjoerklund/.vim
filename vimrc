@@ -206,6 +206,7 @@ endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
+set termguicolors
 set relativenumber  " show relative liene numbers"
 set number          " show line numbers"
 set noshowmode      " do not show mode at bottom
@@ -273,6 +274,7 @@ set foldcolumn=0        "do not show fold
 
 if has("gui_macvim")
   set macmeta
+  set macligatures
 endif
 
 "  }}}
@@ -305,8 +307,6 @@ set wildignore+=*.sou
 set wildignore+=*.dll
 set wildignore+=*.hg
 set wildignore+=*.svn
-set wildignore+=.git
-set wildignore+=.gitignore
 set wildignore+=*~
 set wildignore+=*.bmp
 set wildignore+=*.gif
@@ -425,6 +425,20 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 "  }}}
 
 " Commands -----------------------------------------------------------------{{{
+
+function! s:Functions()
+  set guifont=Fira\ Code:h11
+endfunction
+command! Functions call s:Functions()
+
+function! s:Objects()
+  if has('win32')
+    set guifont=hack:h8
+  else
+    set guifont=hack:h11
+  endif
+endfunction
+command! Objects call s:Objects()
 
 function! s:AlternateFile()
   let name = expand('%:r')
