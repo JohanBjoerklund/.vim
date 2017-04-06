@@ -290,7 +290,8 @@ set autoread                " auto-load buffer when file was edited outside of V
 set shiftwidth=2
 set softtabstop=2
 set expandtab               " tabs are spaces"
-set autoindent              " looka at it stoopid
+set autoindent              " look at it stoopid
+set copyindent              " nice alignment
 set incsearch               " find the next match as we type the search
 set ignorecase              " ignore case when searching
 set smartcase               " but case sensitve if expression contains capital letters
@@ -382,9 +383,12 @@ nnoremap <leader>gp <Plug>GitGutterPreviewHunk
 " Gutentags ----------------------------------------------------------------{{{
 
 " let g:gutentags_ctags_exlude = []
+let g:gutentags_trace = 0
 let g:gutentags_cache_dir = $HOME . '/.cache/tags'
 let g:gutentags_project_root = []
 
+let g:gutentags_project_info = []
+call add(g:gutentags_project_info, {'type': 'typescript', 'glob': '*.ts'})
 call add(g:gutentags_project_root, 'elm')
 " let g:gutentags_project_info = []
 " call add(g:gutentags_project_info, {'type': 'elixir', 'glob': '*.ex*'})
