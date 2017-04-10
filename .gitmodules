@@ -113,3 +113,6 @@
 [submodule "pack/all/start/ayu"]
 	path = pack/all/start/ayu
 	url = https://github.com/ayu-theme/ayu-vim.git
+[submodule "pack\\all\\start\\vim-riot"]
+	path = pack\\all\\start\\vim-riot
+	url = https://github.com/ryym/vim-riot.git
