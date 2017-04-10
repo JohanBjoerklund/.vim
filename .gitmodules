@@ -38,10 +38,6 @@
 	path = pack/all/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
         ignore = untracked
-[submodule "bundle/vim-obsession"]
-	path = pack/all/start/vim-obsession
-	url = https://github.com/tpope/vim-obsession.git
-        ignore = untracked
 [submodule "bundle/typescript-vim"]
 	path = pack/all/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
