@@ -1,12 +1,6 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Bundle -------------------------------------------------------------------{{{
-
-" set runtimepath+=$HOME/.vim/
-
-" }}}
-
 " Mappings -----------------------------------------------------------------{{{
 
 " Leader -------------------------------------------------------------------{{{
@@ -153,16 +147,6 @@ augroup END
 
 " }}}
 
-" JavaScript -------------------------------------------------------------- {{{
-
-" augroup ft_javascript
-"   autocmd!
-"   autocmd FileType javascript :iabbrev func function()<esc>i
-"   autocmd FileType javascript :iabbrev function "Use iabbrev func instead
-" augroup END
-
-" }}}
-
 " VimScript --------------------------------------------------------------- {{{
 
 augroup ft_vimscript
@@ -182,7 +166,10 @@ au Filetype qf wincmd K
 
 " Tag --------------------------------------------------------------------- {{{
 
-au BufNewFile,BufRead *.tag setlocal ft=javascript
+augroup ft_tag
+  autocmd FileType riot call tern#Enable()
+  autocmd FileType riot setlocal completeopt-=preview
+augroup END
 
 " }}}
 
@@ -213,8 +200,7 @@ set noshowmode      " do not show mode at bottom
 set showcmd         " show incomplete cmds down the bottom
 set hlsearch        " hilight searches by default
 set cursorline      " highlight the line with the cursor
-" set showbreak=...   " show line breaks as '...'
-let &showbreak='↳ '     " show line breaks as '¬'
+let &showbreak='↳ ' " show line breaks as '↳ '
 set ttyfast         " might improve scroll performance
 set lazyredraw      " might improve scroll performance
 set colorcolumn=80  " show 80 column makr
@@ -228,8 +214,6 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 colorscheme base16-tomorrow-night
-" let macvim_skip_colorscheme=1
-" colorscheme tender
 
 if has('breakindent')
   silent! set breakindent
@@ -248,7 +232,6 @@ endif
 if has("unix")
     set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
 endif
-" This breaks NeoMake on windows
 set shellslash      "use forwards slashes
 
 "  }}}
@@ -297,7 +280,6 @@ set ignorecase              " ignore case when searching
 set smartcase               " but case sensitve if expression contains capital letters
 set gdefault                " substitue globally by default, no need for /g
 
-set omnifunc=syntaxcomplete#Complete
 set tags=./tags,tags;$HOME
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
@@ -370,7 +352,6 @@ let g:ctrlp_status_func = {
   \}
 
 nmap <leader>f :CtrlP<CR><C-\>w
-nmap <leader>d :CtrlPDir<CR>
 
 "  }}}
 
@@ -382,18 +363,8 @@ nnoremap <leader>gp <Plug>GitGutterPreviewHunk
 
 " Gutentags ----------------------------------------------------------------{{{
 
-" let g:gutentags_ctags_exlude = []
 let g:gutentags_trace = 0
 let g:gutentags_cache_dir = $HOME . '/.cache/tags'
-let g:gutentags_project_root = []
-
-let g:gutentags_project_info = []
-call add(g:gutentags_project_info, {'type': 'typescript', 'glob': '*.ts'})
-call add(g:gutentags_project_root, 'elm')
-" let g:gutentags_project_info = []
-" call add(g:gutentags_project_info, {'type': 'elixir', 'glob': '*.ex*'})
-" call add(g:gutentags_project_info, {'type': 'elm', 'glob': '*.elm'})
-
 
 "  }}}
 
@@ -416,6 +387,22 @@ map <leader>ss :Scratch<CR>
 " NeoMake -------------------------------------------------------------------{{{
 
 au! BufWritePost,BufRead * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_riot_enabled_makers = ['eslint']
+let g:neomake_riot_eslint_maker = {
+        \ 'args': ['-f', 'compact'],
+        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+        \ '%W%f: line %l\, col %c\, Warning - %m'
+        \ }
+"  }}}
+
+" Tern -----------------------------------------------------------------{{{
+
+nnoremap <localleader>rr :TernRename<CR>
+nnoremap <localleader>r :TernRef<CR>
+nnoremap <localleader>d :TernDef<CR>
+
+let g:tern_show_signature_in_pum = 1
 
 "  }}}
 
@@ -425,6 +412,7 @@ au! BufWritePost,BufRead * Neomake
 let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 "  }}}
+
 
 "  }}}
 
@@ -443,28 +431,6 @@ function! s:Objects()
   endif
 endfunction
 command! Objects call s:Objects()
-
-function! s:AlternateFile()
-  let name = expand('%:r')
-  let ext = tolower(expand('%:e'))
-  let sources = ['js','ts', 'c', 'cc', 'cpp', 'cxx']
-  let headers = ['html','js', 'h', 'hh', 'hpp', 'hxx']
-  for pair in [[sources, headers], [headers, sources]]
-    let [set1, set2] = pair
-    if index(set1, ext) >= 0
-      for h in set2
-        let aname = name.'.'.h
-        for a in [aname, toupper(aname)]
-          if filereadable(a)
-            execute 'e' a
-            return
-          end
-        endfor
-      endfor
-    endif
-  endfor
-endfunction
-command! A call s:AlternateFile()
 
 nnoremap <silent> <leader>q :call <SID>QuickFixToggle()<cr>
 let g:quickfix_is_open = 0
@@ -495,16 +461,6 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Set current directory
 au BufEnter * silent! lcd %:p:h
-
-" Show line numbers on current buffer only
-augroup windows
-
-  au WinEnter * :setlocal number
-  au WinEnter * :setlocal relativenumber
-  au WinLeave * :setlocal nonumber
-  au WinLeave * :setlocal norelativenumber
-
-augroup END
 
 " }}}
 
