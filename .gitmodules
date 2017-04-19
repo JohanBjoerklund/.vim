@@ -114,6 +114,7 @@
 	path = pack/all/start/vim-riot
 	url = https://github.com/ryym/vim-riot.git
         ignore = untracked
-[submodule "pack\\all\\start\\tern_for_vim"]
-	path = pack\\all\\start\\tern_for_vim
+[submodule "pack/all/start/tern_for_vim"]
+	path = pack/all/start/tern_for_vim
 	url = https://github.com/ternjs/tern_for_vim.git
+        ignore = untracked
