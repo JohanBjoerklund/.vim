@@ -167,6 +167,7 @@ au Filetype qf wincmd K
 " Tag --------------------------------------------------------------------- {{{
 
 augroup ft_tag
+  autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
   autocmd FileType riot call tern#Enable()
   autocmd FileType riot setlocal completeopt-=preview
 augroup END
