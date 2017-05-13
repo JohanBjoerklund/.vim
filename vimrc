@@ -530,9 +530,6 @@ function! Status(winnr)
   " right side
   let stat .= '%='
 
-  " generating tags
-  " let stat .= Color(active, 1, gutentags#statusline('Generating...'))
-  let stat .= gutentags#statusline('Generating...')
   " window
   let stat .= Color(1, 1,' Nº ' . a:winnr)
 
