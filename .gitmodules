@@ -97,11 +97,6 @@
 [submodule "pack/all/start/elm"]
 	path = pack/all/start/elm
 	url = https://github.com/lambdatoast/elm.vim.git
-        ignore = untracked
-[submodule "pack/all/start/vim-gutentags"]
-	path = pack/all/start/vim-gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags.git
-        ignore = untracked
 [submodule "pack/all/start/alchemist"]
 	path = pack/all/start/alchemist
 	url = https://github.com/slashmili/alchemist.vim.git
