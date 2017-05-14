@@ -109,3 +109,9 @@
 	path = pack/all/start/tern_for_vim
 	url = https://github.com/ternjs/tern_for_vim.git
         ignore = untracked
+[submodule "pack/all/start/vim-textobj-parameter"]
+	path = pack/all/start/vim-textobj-parameter
+	url = https://github.com/sgur/vim-textobj-parameter.git
+[submodule "pack/all/start/vim-textobj-variable-segment"]
+	path = pack/all/start/vim-textobj-variable-segment
+	url = https://github.com/Julian/vim-textobj-variable-segment.git
