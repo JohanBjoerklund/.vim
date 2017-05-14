@@ -123,7 +123,6 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 augroup ft_html
   autocmd!
   autocmd FileType html setlocal tabstop=4 shiftwidth=4
-  autocmd BufRead,BufWritePre *.html :normal gg=G
 augroup END
 
 " }}}
