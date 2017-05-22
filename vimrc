@@ -56,9 +56,11 @@ nnoremap <BS> <C-^>
 
 " open buffer list
 nnoremap <leader>b :b <C-d>
+nnoremap gb :ls<CR>:b<space>
 " jump to previously edited buffer
 nnoremap <leader>q :b#<C-r>
 
+set path+=**
 "  }}}
 
 " Errors -------------------------------------------------------------------{{{
@@ -536,6 +538,7 @@ endfunction
 augroup status
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
+  autocmd VimEnter,WinEnter,TabEnter,BufWinEnter * call SetTabName()
 augroup END
 
 hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41
@@ -550,6 +553,19 @@ hi User5 ctermfg=03  guifg=#f0c674  ctermbg=19  guibg=#373b41
 if filereadable(glob('$HOME/.vimrc.local'))
   source $HOME/.vimrc.local
 endif
+
+" }}}
+
+" Tabs ---------------------------------------------------------------------{{{
+
+//TODO: Make less hacky
+function! SetTabName()
+  for nr in range(tabpagenr('$'))
+    let s:dir = finddir('.git','.;')
+    let t:tablabel = empty(s:dir) ? '' : fnamemodify(s:dir, ":h")
+    set guitablabel=%{t:tablabel}
+  endfor
+endfunction
 
 " }}}
 
