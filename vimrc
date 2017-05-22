@@ -538,7 +538,6 @@ endfunction
 augroup status
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
-  autocmd VimEnter,WinEnter,TabEnter,BufWinEnter * call SetTabName()
 augroup END
 
 hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41
@@ -558,14 +557,42 @@ endif
 
 " Tabs ---------------------------------------------------------------------{{{
 
-//TODO: Make less hacky
-function! SetTabName()
-  for nr in range(tabpagenr('$'))
-    let s:dir = finddir('.git','.;')
-    let t:tablabel = empty(s:dir) ? '' : fnamemodify(s:dir, ":h")
-    set guitablabel=%{t:tablabel}
+set guioptions-=e
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    call settabvar(tabpagenr(), 'tablabel', fnamemodify(finddir('.git', '.;'), ':h:t'))
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T'
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
   endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
 endfunction
+
+
+function MyTabLabel(n)
+  return gettabvar(a:n, 'tablabel')
+endfunction
+
+set tabline=%!MyTabLine()
 
 " }}}
 
