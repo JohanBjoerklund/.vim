@@ -156,6 +156,10 @@ augroup ft_vimscript
   autocmd Filetype vim setlocal modelines=1
 augroup END
 
+augroup ft_qf
+  autocmd!
+  autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
+augroup END
 " }}}
 
 " QuickFix ---------------------------------------------------------------- {{{
