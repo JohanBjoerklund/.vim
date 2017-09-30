@@ -110,3 +110,6 @@
 [submodule "pack/all/start/yats.vim"]
 	path = pack/all/start/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim.git
+[submodule "pack/all/start/yajs.vim"]
+	path = pack/all/start/yajs.vim
+	url = https://github.com/othree/yajs.vim.git
