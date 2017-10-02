@@ -445,6 +445,7 @@ function! s:QuickFixToggle()
 endif
 endfunction
 
+command! -nargs=+ WGrep execute 'silent lgrep! <args>' fnamemodify(findfile('.tern-project', '.;'), ':h') | lopen
 " }}}
 
 " Events -------------------------------------------------------------------{{{
