@@ -117,3 +117,18 @@
 	path = pack/all/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
 
+[submodule "pack/all/start/asyncomplete.vim"]
+	path = pack/all/start/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim.git
+[submodule "pack/all/start/asyncomplete-buffer.vim"]
+	path = pack/all/start/asyncomplete-buffer.vim
+	url = https://github.com/prabirshrestha/asyncomplete-buffer.vim.git
+[submodule "pack/all/start/asyncomplete-omni.vim"]
+	path = pack/all/start/asyncomplete-omni.vim
+	url = https://github.com/yami-beta/asyncomplete-omni.vim.git
+[submodule "pack/all/start/asyncomplete-tscompletejob.vim"]
+	path = pack/all/start/asyncomplete-tscompletejob.vim
+	url = https://github.com/prabirshrestha/asyncomplete-tscompletejob.vim.git
+[submodule "pack/all/start/asyncomplete-ultisnips.vim"]
+	path = pack/all/start/asyncomplete-ultisnips.vim
+	url = https://github.com/prabirshrestha/asyncomplete-ultisnips.vim.git

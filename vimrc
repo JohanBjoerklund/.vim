@@ -174,7 +174,6 @@ au Filetype qf wincmd K
 augroup ft_tag
   autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
   autocmd FileType riot call tern#Enable()
-  autocmd FileType riot setlocal completeopt-=preview
 augroup END
 
 " }}}
@@ -411,10 +410,49 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 "  }}}
 
+" Asyncomplete --------------------------------------------------------------{{{
+
+set completeopt+=menuone,noselect ",noinsert ",noselect
+set completeopt-=preview,longest,menu
+set shortmess+=c " Turn off comletion messages
+
+autocmd User asyncomplete_setup
+  \ call asyncomplete#register_source(
+  \   asyncomplete#sources#buffer#get_source_options({
+  \     'name': 'buffer',
+  \     'whitelist': ['*'],
+  \     'blacklist': ['go'],
+  \     'completor': function('asyncomplete#sources#buffer#completor'),
+  \ }))
+
+autocmd User asyncomplete_setup
+  \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+  \ 'name': 'omni',
+  \ 'whitelist': ['*'],
+  \ 'completor': function('asyncomplete#sources#omni#completor')
+  \  }))
+
+autocmd User asyncomplete_setup
+  \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+  \ 'name': 'ultisnips',
+  \ 'whitelist': ['*'],
+  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+  \ }))
+
+autocmd User asyncomplete_setup
+  \ call asyncomplete#register_source(
+  \   asyncomplete#sources#tscompletejob#get_source_options({
+  \     'name': 'tscompletejob',
+  \     'whitelist': ['typescript'],
+  \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
+  \ }))
+
+"  }}}
 
 "  }}}
 
 " Commands -----------------------------------------------------------------{{{
+
 
 function! s:Functions()
   set guifont=Fira\ Code:h11
