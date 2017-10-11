@@ -485,6 +485,41 @@ endif
 endfunction
 
 command! -nargs=+ WGrep execute 'silent lgrep! <args>' fnamemodify(findfile('.tern-project', '.;'), ':h') | lopen
+
+command! -nargs=1 NRun execute '!start cmd /k npm run ' . <q-args>
+
+let g:npmFailed = 0
+let g:npmPassed = 0
+
+function! NSpecOut(channel, msg)
+
+  echom a:msg
+
+  let s:failed = matchstr(a:msg, '[0-9]\+ failed')
+  let s:passed = matchstr(a:msg, '[0-9]\+ passed')
+
+  if !empty(s:failed)
+    let g:npmFailed = matchstr(s:failed, '[0-9]\+')
+  endif
+
+  if !empty(s:passed)
+    let g:npmPassed = matchstr(s:passed, '[0-9]\+')
+  endif
+
+endfunction
+
+function! NSpecErr(channel, msg)
+  echom  a:msg
+endfunction
+
+function! NSpec()
+  let g:npmFailed = 0
+  let g:npmPassed = 0
+  return job_start('cmd /k npm test', { 'out_cb': 'NSpecOut', 'err_cb': 'NSpecErr' })
+endfunction
+
+command! -nargs=0 NSpec call NSpec()
+
 " }}}
 
 " Events -------------------------------------------------------------------{{{
@@ -566,6 +601,12 @@ function! Status(winnr)
 
   " right side
   let stat .= '%='
+
+  let stat .= Color(active, 1, '[')
+  let stat .= Color(active, 3, g:npmPassed)
+  let stat .= Color(active, 1, '/')
+  let stat .= Color(active, 2, g:npmFailed)
+  let stat .= Color(active, 1, ']')
 
   " window
   let stat .= Color(1, 1,' Nº ' . a:winnr)
