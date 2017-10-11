@@ -87,9 +87,10 @@ nnoremap <silent> <leader>m :marks<CR>
 " Clipboard ----------------------------------------------------------------{{{
 
 if has("win32") || has("win64")
-  nnoremap <leader>c "+y
-  nnoremap <leader>v "+p
-  nnoremap <leader>V "+P
+  nnoremap <leader>c "*y
+  nnoremap <leader>v "*p
+  nnoremap <leader>V "*P
+  vnoremap <leader>c "*y"
 endif
 
 "  }}}
