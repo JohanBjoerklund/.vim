@@ -172,11 +172,14 @@ au Filetype qf wincmd K
 
 " Tag --------------------------------------------------------------------- {{{
 
+" augroup ft_tag
+"   autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
+"   autocmd FileType riot call tern#Enable()
+" augroup END
 augroup ft_tag
-  autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
-  autocmd FileType riot call tern#Enable()
+  autocmd BufRead,BufNewFile *.tag setlocal filetype=javascript
+  " autocmd FileType riot call tern#Enable()
 augroup END
-
 " }}}
 
 " .*rc -------------------------------------------------------------------- {{{
@@ -382,19 +385,27 @@ map <leader>ss :Scratch<CR>
 
 "  }}}
 
-" NeoMake -------------------------------------------------------------------{{{
+" Ale ----------------------------------------------------------------------{{{
 
-au! BufWritePost,BufRead * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_riot_enabled_makers = ['eslint']
-let g:neomake_riot_eslint_maker = {
-        \ 'args': ['-f', 'compact'],
-        \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-        \ '%W%f: line %l\, col %c\, Warning - %m'
-        \ }
-"  }}}
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '!'
 
-" Tern -----------------------------------------------------------------{{{
+hi ALEErrorSign ctermfg=01 guifg=#cc6666 ctermbg=15  guibg=#282a2e
+hi ReplaceCursor ctermfg=15 guifg=#f0c674 ctermbg=01  guibg=#373b41
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+\   'javascript': ['eslint']
+\}
+
+
+let g:ale_pattern_options = {
+\ '\.tag$': {'ale_linters': ['eslint'], 'ale_fixers': ['eslint']}
+\}
+
+" Tern ---------------------------------------------------------------------{{{
 
 nnoremap <localleader>rr :TernRename<CR>
 nnoremap <localleader>r :TernRef<CR>
@@ -423,6 +434,7 @@ autocmd User asyncomplete_setup
   \     'name': 'buffer',
   \     'whitelist': ['*'],
   \     'blacklist': ['go'],
+  \     'priority': 1,
   \     'completor': function('asyncomplete#sources#buffer#completor'),
   \ }))
 
@@ -430,6 +442,8 @@ autocmd User asyncomplete_setup
   \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
   \ 'name': 'omni',
   \ 'whitelist': ['*'],
+  \ 'blacklist': ['html'],
+  \ 'priority': 5,
   \ 'completor': function('asyncomplete#sources#omni#completor')
   \  }))
 
@@ -437,6 +451,7 @@ autocmd User asyncomplete_setup
   \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
   \ 'name': 'ultisnips',
   \ 'whitelist': ['*'],
+  \ 'priority': 2,
   \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
   \ }))
 
@@ -445,6 +460,7 @@ autocmd User asyncomplete_setup
   \   asyncomplete#sources#tscompletejob#get_source_options({
   \     'name': 'tscompletejob',
   \     'whitelist': ['typescript'],
+  \     'priority': 4,
   \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
   \ }))
 
@@ -488,38 +504,6 @@ command! -nargs=+ WGrep execute 'silent lgrep! <args>' fnamemodify(findfile('.te
 
 command! -nargs=1 NRun execute '!start cmd /k npm run ' . <q-args>
 
-let g:npmFailed = 0
-let g:npmPassed = 0
-
-function! NSpecOut(channel, msg)
-
-  echom a:msg
-
-  let s:failed = matchstr(a:msg, '[0-9]\+ failed')
-  let s:passed = matchstr(a:msg, '[0-9]\+ passed')
-
-  if !empty(s:failed)
-    let g:npmFailed = matchstr(s:failed, '[0-9]\+')
-  endif
-
-  if !empty(s:passed)
-    let g:npmPassed = matchstr(s:passed, '[0-9]\+')
-  endif
-
-endfunction
-
-function! NSpecErr(channel, msg)
-  echom  a:msg
-endfunction
-
-function! NSpec()
-  let g:npmFailed = 0
-  let g:npmPassed = 0
-  return job_start('cmd /k npm test', { 'out_cb': 'NSpecOut', 'err_cb': 'NSpecErr' })
-endfunction
-
-command! -nargs=0 NSpec call NSpec()
-
 " }}}
 
 " Events -------------------------------------------------------------------{{{
@@ -560,9 +544,8 @@ function! Status(winnr)
     endif
   endfunction
 
-
   " file
-  let stat .= Color(active, 4, active ? ' »' : ' «')
+  let stat .= Color(active, 4, active ? ' «' : ' »')
   let stat .= ' %<'
 
   if fname == '__Gundo__'
@@ -573,7 +556,7 @@ function! Status(winnr)
     let stat .= '%f'
   endif
 
-  let stat .= ' ' . Color(active, 4, active ? '«' : '»')
+  let stat .= ' ' . Color(active, 4, active ? ' »' : ' «')
 
   " git branch
   if exists('*fugitive#head')
@@ -602,14 +585,8 @@ function! Status(winnr)
   " right side
   let stat .= '%='
 
-  let stat .= Color(active, 1, '[')
-  let stat .= Color(active, 3, g:npmPassed)
-  let stat .= Color(active, 1, '/')
-  let stat .= Color(active, 2, g:npmFailed)
-  let stat .= Color(active, 1, ']')
-
   " window
-  let stat .= Color(1, 1,' Nº ' . a:winnr)
+  let stat .= Color(1, 1,' N° ' . a:winnr)
 
   return stat
 endfunction

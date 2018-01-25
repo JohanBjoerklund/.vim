@@ -74,10 +74,6 @@
 	path = pack/all/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
         ignore = untracked
-[submodule "pack/all/start/neomake"]
-	path = pack/all/start/neomake
-	url = https://github.com/neomake/neomake.git
-        ignore = untracked
 [submodule "pack/all/start/vim-elixir"]
 	path = pack/all/start/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
@@ -92,10 +88,6 @@
 [submodule "pack/all/start/alchemist"]
 	path = pack/all/start/alchemist
 	url = https://github.com/slashmili/alchemist.vim.git
-        ignore = untracked
-[submodule "pack/all/start/vim-riot"]
-	path = pack/all/start/vim-riot
-	url = https://github.com/ryym/vim-riot.git
         ignore = untracked
 [submodule "pack/all/start/tern_for_vim"]
 	path = pack/all/start/tern_for_vim
@@ -132,3 +124,9 @@
 [submodule "pack/all/start/asyncomplete-ultisnips.vim"]
 	path = pack/all/start/asyncomplete-ultisnips.vim
 	url = https://github.com/prabirshrestha/asyncomplete-ultisnips.vim.git
+[submodule "pack\\all\\start\\ale"]
+	path = pack\\all\\start\\ale
+	url = https://github.com/w0rp/ale.git
+[submodule "pack\\all\\start\\vim-jsx-riot"]
+	path = pack\\all\\start\\vim-jsx-riot
+	url = https://github.com/nicklasos/vim-jsx-riot.git
