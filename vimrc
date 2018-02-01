@@ -177,6 +177,8 @@ augroup ft_tag
   autocmd FileType riot call tern#Enable()
 augroup END
 
+" }}}
+
 " .*rc -------------------------------------------------------------------- {{{
 
 au BufNewFile,BufRead .babelrc,.jshintrc setlocal ft=json
@@ -459,7 +461,6 @@ autocmd User asyncomplete_setup
   \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
   \ }))
 
- }}}
 
 "  }}}
 
