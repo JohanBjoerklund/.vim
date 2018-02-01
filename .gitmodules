@@ -124,9 +124,9 @@
 [submodule "pack/all/start/asyncomplete-ultisnips.vim"]
 	path = pack/all/start/asyncomplete-ultisnips.vim
 	url = https://github.com/prabirshrestha/asyncomplete-ultisnips.vim.git
-[submodule "pack\\all\\start\\ale"]
-	path = pack\\all\\start\\ale
+[submodule "pack/all/start/ale"]
+	path = pack/all/start/ale
 	url = https://github.com/w0rp/ale.git
-[submodule "pack\\all\\start\\vim-jsx-riot"]
-	path = pack\\all\\start\\vim-jsx-riot
-	url = https://github.com/nicklasos/vim-jsx-riot.git
+[submodule "pack/all/start/vim-riot"]
+	path = pack/all/start/vim-riot
+	url = https://github.com/ryym/vim-riot.git

@@ -172,15 +172,10 @@ au Filetype qf wincmd K
 
 " Tag --------------------------------------------------------------------- {{{
 
-" augroup ft_tag
-"   autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
-"   autocmd FileType riot call tern#Enable()
-" augroup END
 augroup ft_tag
-  autocmd BufRead,BufNewFile *.tag setlocal filetype=javascript
-  " autocmd FileType riot call tern#Enable()
+  autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
+  autocmd FileType riot call tern#Enable()
 augroup END
-" }}}
 
 " .*rc -------------------------------------------------------------------- {{{
 
@@ -464,7 +459,7 @@ autocmd User asyncomplete_setup
   \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
   \ }))
 
-"  }}}
+ }}}
 
 "  }}}
 
