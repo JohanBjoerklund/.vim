@@ -394,13 +394,11 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-\   'javascript': ['eslint']
-\}
+  \ 'javascript': ['eslint'],
+  \ 'riot': ['eslint']
+  \}
 
-
-let g:ale_pattern_options = {
-\ '\.tag$': {'ale_linters': ['eslint'], 'ale_fixers': ['eslint']}
-\}
+let g:ale_linter_aliases = { 'riot': ['javascript'] }
 
 " Tern ---------------------------------------------------------------------{{{
 
