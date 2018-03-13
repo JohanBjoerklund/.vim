@@ -1,5 +1,6 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
+language messages en
 
 " Mappings -----------------------------------------------------------------{{{
 
@@ -284,7 +285,6 @@ set copyindent              " nice alignment
 set incsearch               " find the next match as we type the search
 set ignorecase              " ignore case when searching
 set smartcase               " but case sensitve if expression contains capital letters
-set gdefault                " substitue globally by default, no need for /g
 
 set wildmode=list:longest,full  "make cmdline tab completion similar to bash
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru match
