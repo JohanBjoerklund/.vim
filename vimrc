@@ -393,10 +393,14 @@ hi ReplaceCursor ctermfg=15 guifg=#f0c674 ctermbg=01  guibg=#373b41
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+let g:ale_rust_rls_toolchain = 'stable'
+
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
-  \ 'riot': ['eslint']
+  \ 'riot': ['eslint'],
+  \ 'rust': ['rls']
   \}
+
 
 let g:ale_linter_aliases = { 'riot': ['javascript'] }
 
@@ -419,11 +423,20 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 " Asyncomplete --------------------------------------------------------------{{{
 
+let g:asyncomplete_remove_duplicates = 1
+
 set completeopt+=menuone,noselect ",noinsert ",noselect
 set completeopt-=preview,longest,menu
 set shortmess+=c " Turn off comletion messages
 
-autocmd User asyncomplete_setup
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'rls',
+  \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+  \ 'whitelist': ['rust'],
+  \ 'priority': 99
+  \ })
+
+au User asyncomplete_setup
   \ call asyncomplete#register_source(
   \   asyncomplete#sources#buffer#get_source_options({
   \     'name': 'buffer',
@@ -433,7 +446,7 @@ autocmd User asyncomplete_setup
   \     'completor': function('asyncomplete#sources#buffer#completor'),
   \ }))
 
-autocmd User asyncomplete_setup
+au User asyncomplete_setup
   \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
   \ 'name': 'omni',
   \ 'whitelist': ['*'],
@@ -442,7 +455,7 @@ autocmd User asyncomplete_setup
   \ 'completor': function('asyncomplete#sources#omni#completor')
   \  }))
 
-autocmd User asyncomplete_setup
+au User asyncomplete_setup
   \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
   \ 'name': 'ultisnips',
   \ 'whitelist': ['*'],
@@ -450,7 +463,7 @@ autocmd User asyncomplete_setup
   \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
   \ }))
 
-autocmd User asyncomplete_setup
+au User asyncomplete_setup
   \ call asyncomplete#register_source(
   \   asyncomplete#sources#tscompletejob#get_source_options({
   \     'name': 'tscompletejob',
