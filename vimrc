@@ -122,6 +122,15 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 
 " FileType -----------------------------------------------------------------{{{
 
+" C# ---------------------------------------------------------------------- {{{
+
+augroup ft_cs
+  autocmd!
+  autocmd FileType cs setlocal tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+" }}}
+
 " HTML -------------------------------------------------------------------- {{{
 
 augroup ft_html
@@ -448,7 +457,7 @@ au User asyncomplete_setup
   \   asyncomplete#sources#buffer#get_source_options({
   \     'name': 'buffer',
   \     'whitelist': ['*'],
-  \     'blacklist': ['go'],
+  \     'blacklist': ['go', 'cs'],
   \     'priority': 1,
   \     'completor': function('asyncomplete#sources#buffer#completor'),
   \ }))
@@ -487,11 +496,16 @@ au User asyncomplete_setup
 let g:OmniSharp_server_path = 'C:\OmniSharp\omnisharp.http-win-x64\OmniSharp.exe'
 let g:OmniSharp_selector_ui = 'ctrlp'
 
+
+" list of EndPoints (v2)
+"https://github.com/OmniSharp/omnisharp-roslyn/blob/master/src/OmniSharp.Abstractions/OmniSharpEndpoints.cs
+
 augroup omnisharp_commands
   autocmd!
 
-  " build async
+  " build async (OmniSharp-roslyn does not support this yet)
   autocmd FileType cs nnoremap <buffer> <leader>b :wa!<CR>:OmniSharpBuildAsync<CR>
+
   " save new file to nearest project
   autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 
