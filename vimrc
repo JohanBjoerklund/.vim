@@ -493,7 +493,6 @@ au User asyncomplete_setup
 
 " OmniSharp ----------------------------------------------------------------{{{
 
-" let g:OmniSharp_server_path = 'C:\OmniSharp\omnisharp.http-win-x64\OmniSharp.exe'
 let g:OmniSharp_server_path = expand('~/.omnisharp/omnisharp-roslyn/') . 'OmniSharp.exe'
 let g:OmniSharp_selector_ui = 'ctrlp'
 
