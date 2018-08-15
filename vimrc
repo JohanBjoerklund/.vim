@@ -401,7 +401,7 @@ map <leader>ss :Scratch<CR>
 " Ale ----------------------------------------------------------------------{{{
 
 let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '!'
+let g:ale_sign_warning = '✖'
 
 hi ALEErrorSign ctermfg=01 guifg=#cc6666 ctermbg=15  guibg=#282a2e
 hi ReplaceCursor ctermfg=15 guifg=#f0c674 ctermbg=01  guibg=#373b41
@@ -414,7 +414,8 @@ let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'riot': ['eslint'],
-  \ 'rust': ['rls']
+  \ 'rust': ['rls'],
+  \ 'cs': ['OmniSharp']
   \}
 
 
@@ -548,7 +549,7 @@ command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 nnoremap <Leader>rl :OmniSharpReloadSolution<CR>
 nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
 " Load the current .cs file to the nearest project
-nnoremap <Leader>tp :OmniSharpAddToProject<CR>
+" nnoremap <Leader>tp :OmniSharpAddToProject<CR>
 
 " Start the omnisharp server for the current solution
 nnoremap <Leader>ss :OmniSharpStartServer<CR>
