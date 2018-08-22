@@ -512,12 +512,6 @@ let g:OmniSharp_selector_ui = 'ctrlp'
 augroup omnisharp_commands
   autocmd!
 
-  " build async (OmniSharp-roslyn does not support this yet)
-  autocmd FileType cs nnoremap <buffer> <leader>b :wa!<CR>:OmniSharpBuildAsync<CR>
-
-  " save new file to nearest project
-  " autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-
   " Show type information automatically when the cursor stops moving
   " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
@@ -535,6 +529,8 @@ augroup omnisharp_commands
   autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
   autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
   autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+  autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+  autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
 
   " Navigate up and down by method/property/field
   autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
@@ -549,15 +545,10 @@ xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 
 " Rename with dialog
 nnoremap <Leader>nm :OmniSharpRename<CR>
-nnoremap <F2> :OmniSharpRename<CR>
 " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
 command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
-" Force OmniSharp to reload the solution. Useful when switching branches etc.
-nnoremap <Leader>rl :OmniSharpReloadSolution<CR>
 nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
-" Load the current .cs file to the nearest project
-" nnoremap <Leader>tp :OmniSharpAddToProject<CR>
 
 " Start the omnisharp server for the current solution
 nnoremap <Leader>ss :OmniSharpStartServer<CR>
