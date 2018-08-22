@@ -341,19 +341,27 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 let g:ctrlp_root_markers = ['.tern-project']
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_lazy_update = 350
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_reuse_window = 'netrw\|help'
 
+function! CtrlP_item_translator(item, mode)
+  if a:item == 'mru files'
+    retu 'mru'
+  elseif a:item == 'files' && a:mode == 'path'
+    retu 'path'
+  else
+    retu a:item
+  endif
+endfunction
+
 function! CtrlP_main_status(...)
   let regex = a:3 ? '%2*regex %*' : ''
   let prv = '%#StatusLineNC# '.a:4.' %*'
-  let item = ' ' . (a:5 == 'mru files' ? 'mru' : a:5) . ' '
+  let item = ' ' . CtrlP_item_translator(a:5, a:2) . ' '
   let nxt = '%#StatusLineNC# '.a:6.' %*'
-  let byfname = '%2* '.a:2.' %*'
   let dir = '%#User3# ← %*%#StatusLineNC#' . fnamemodify(getcwd(), ':~') . '%* '
 
   " only outputs current mode
@@ -508,7 +516,7 @@ augroup omnisharp_commands
   autocmd FileType cs nnoremap <buffer> <leader>b :wa!<CR>:OmniSharpBuildAsync<CR>
 
   " save new file to nearest project
-  autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+  " autocmd BufWritePost *.cs call OmniSharp#AddToProject()
 
   " Show type information automatically when the cursor stops moving
   " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
