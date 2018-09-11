@@ -145,3 +145,6 @@
 [submodule "pack/all/start/omnisharp-vim"]
 	path = pack/all/start/omnisharp-vim
 	url = https://github.com/OmniSharp/omnisharp-vim.git
+[submodule "pack/all/start/gruvbox"]
+	path = pack/all/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git

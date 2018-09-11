@@ -231,12 +231,7 @@ set background=dark
 set hidden
 set t_Co=256      " enable 256 color support"
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
-colorscheme base16-tomorrow-night
+colorscheme gruvbox
 
 if has('breakindent')
   silent! set breakindent
