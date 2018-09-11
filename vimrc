@@ -1,6 +1,7 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
 language messages en
+set shortmess+=sI
 
 " Mappings -----------------------------------------------------------------{{{
 
@@ -405,12 +406,18 @@ map <leader>ss :Scratch<CR>
 
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '✖'
+" use global messages
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
 
 hi ALEErrorSign ctermfg=01 guifg=#cc6666 ctermbg=15  guibg=#282a2e
 hi ReplaceCursor ctermfg=15 guifg=#f0c674 ctermbg=01  guibg=#373b41
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> cn :ALENext<CR>
+nmap <silent> cp :ALEPrevious<CR>
+" TODO: investigate why plug bindings doesn't work
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_rust_rls_toolchain = 'stable'
 
@@ -445,8 +452,7 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 let g:asyncomplete_remove_duplicates = 1
 
-set completeopt+=menuone,noselect ",noinsert ",noselect
-set completeopt-=preview,longest,menu
+set completeopt=longest,menuone
 set shortmess+=c " Turn off comletion messages
 
 au User lsp_setup call lsp#register_server({
@@ -499,6 +505,7 @@ au User asyncomplete_setup
 
 let g:OmniSharp_server_path = expand('~/.omnisharp/omnisharp-roslyn/') . 'OmniSharp.exe'
 let g:OmniSharp_selector_ui = 'ctrlp'
+let g:OmniSharp_timeout = 5
 
 
 " list of EndPoints (v2)
