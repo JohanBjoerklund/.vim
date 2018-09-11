@@ -326,9 +326,9 @@ set cpo+=$
 
 " CtrlP --------------------------------------------------------------------{{{
 
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag -l --nocolor --nogroup -g "" %s'
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --smart-case\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
 else
     let g:ctrlp_user_command = has('win32') ? 'dir %s /-n /b /s /a-d' : 'find %s -type f'
 endif
