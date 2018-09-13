@@ -410,9 +410,6 @@ let g:ale_sign_warning = '✖'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
-hi ALEErrorSign ctermfg=01 guifg=#cc6666 ctermbg=15  guibg=#282a2e
-hi ReplaceCursor ctermfg=15 guifg=#f0c674 ctermbg=01  guibg=#373b41
-
 nmap <silent> cn :ALENext<CR>
 nmap <silent> cp :ALEPrevious<CR>
 " TODO: investigate why plug bindings doesn't work
