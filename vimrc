@@ -65,13 +65,6 @@ nnoremap <leader>q :b#<C-r>
 set path+=**
 "  }}}
 
-" Errors -------------------------------------------------------------------{{{
-
-nnoremap <leader>cn :cn<cr>
-nnoremap <leader>cp :cp<cr>
-
-"  }}}
-
 " General ------------------------------------------------------------------{{{
 
 inoremap jk <Esc>
@@ -407,8 +400,8 @@ map <leader>ss :Scratch<CR>
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '✖'
 " use global messages
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
 
 nmap <silent> cn :ALENext<CR>
 nmap <silent> cp :ALEPrevious<CR>
@@ -692,11 +685,11 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
 augroup END
 
-hi User1 ctermfg=04  guifg=#81a2be  ctermbg=19  guibg=#373b41
-hi User2 ctermfg=01  guifg=#cc6666  ctermbg=19  guibg=#373b41
-hi User3 ctermfg=02  guifg=#b5bd68  ctermbg=19  guibg=#373b41
-hi User4 ctermfg=06  guifg=#8abeb7  ctermbg=19  guibg=#373b41
-hi User5 ctermfg=03  guifg=#f0c674  ctermbg=19  guibg=#373b41
+hi User1 ctermfg=04  ctermbg=19 guifg=#83a598 guibg=#504945
+hi User2 ctermfg=01  ctermbg=19 guifg=#fb4934 guibg=#504945
+hi User3 ctermfg=02  ctermbg=19 guifg=#b8bb26 guibg=#504945
+hi User4 ctermfg=06  ctermbg=19 guifg=#8ec07c guibg=#504945
+hi User5 ctermfg=03  ctermbg=19 guifg=#fabd21 guibg=#504945
 "  }}}
 
 " Local --------------------------------------------------------------------{{{
@@ -773,10 +766,10 @@ if &term =~ "screen-256color\\|xterm\\|rxvt"
 
 endif
 
-hi InsertCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=04  guibg=#81a2be
-hi VisualCursor  ctermfg=15 guifg=#c5c8c6 ctermbg=16  guibg=#de935f
-hi ReplaceCursor ctermfg=15 guifg=#c5c8c6 ctermbg=01  guibg=#cc6666
-hi CommandCursor ctermfg=15 guifg=#c5c8c6 ctermbg=02  guibg=#b5bd68
+hi InsertCursor  ctermfg=15 ctermbg=04  guibg=#458588  guifg=#ebdbb2
+hi VisualCursor  ctermfg=15 ctermbg=16  guibg=#d79921  guibg=#ebdbb2
+hi ReplaceCursor ctermfg=15 ctermbg=01  guibg=#cc241d  guibg=#ebdbb2
+hi CommandCursor ctermfg=15 ctermbg=02  guibg=#98971a  guibg=#ebdbb2
 
 augroup cursorline
   autocmd!
