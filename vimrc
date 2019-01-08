@@ -177,7 +177,7 @@ au Filetype qf wincmd K
 " Tag --------------------------------------------------------------------- {{{
 
 augroup ft_tag
-  autocmd BufRead,BufNewFile *.tag.html setlocal filetype=riot
+  autocmd!
   autocmd FileType riot call tern#Enable()
 augroup END
 
@@ -192,6 +192,7 @@ au BufNewFile,BufRead .babelrc,.jshintrc setlocal ft=json
 " c# -----------------------------------------------------------------------{{{
 
 augroup ft_cake
+  autocmd!
   autocmd BufRead,BufNewFile *.cake setlocal filetype=cs
 augroup END
 "  }}}
@@ -421,6 +422,8 @@ let g:ale_linters = {
 
 let g:ale_linter_aliases = { 'riot': ['javascript'] }
 
+"  }}}
+
 " Tern ---------------------------------------------------------------------{{{
 
 nnoremap <localleader>rr :TernRename<CR>
@@ -457,7 +460,7 @@ au User asyncomplete_setup
   \   asyncomplete#sources#buffer#get_source_options({
   \     'name': 'buffer',
   \     'whitelist': ['*'],
-  \     'blacklist': ['go', 'cs'],
+  \     'blacklist': ['cs', 'rust'],
   \     'priority': 1,
   \     'completor': function('asyncomplete#sources#buffer#completor'),
   \ }))
