@@ -310,6 +310,9 @@ set wildignore+=*.exe
 set wildignore+=*/node_modules/*
 set wildignore+=*/elm-stuff/*
 
+set completeopt=longest,menuone " Turn off preview
+set shortmess+=c " Turn off comletion messages
+
 set cpo+=$
 
 "  }}}
@@ -443,54 +446,51 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 " Asyncomplete --------------------------------------------------------------{{{
 
-let g:asyncomplete_remove_duplicates = 1
+" let g:asyncomplete_remove_duplicates = 1
 
-set completeopt=longest,menuone
-set shortmess+=c " Turn off comletion messages
 
-au User lsp_setup call lsp#register_server({
-  \ 'name': 'rls',
-  \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-  \ 'whitelist': ['rust'],
-  \ 'priority': 99
-  \ })
+" au User lsp_setup call lsp#register_server({
+"   \ 'name': 'rls',
+"   \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+"   \ 'whitelist': ['rust'],
+"   \ 'priority': 99
+"   \ })
 
-au User asyncomplete_setup
-  \ call asyncomplete#register_source(
-  \   asyncomplete#sources#buffer#get_source_options({
-  \     'name': 'buffer',
-  \     'whitelist': ['*'],
-  \     'blacklist': ['cs', 'rust'],
-  \     'priority': 1,
-  \     'completor': function('asyncomplete#sources#buffer#completor'),
-  \ }))
+" au User asyncomplete_setup
+"   \ call asyncomplete#register_source(
+"   \   asyncomplete#sources#buffer#get_source_options({
+"   \     'name': 'buffer',
+"   \     'whitelist': ['*'],
+"   \     'blacklist': ['go', 'cs'],
+"   \     'priority': 1,
+"   \     'completor': function('asyncomplete#sources#buffer#completor'),
+"   \ }))
 
-au User asyncomplete_setup
-  \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-  \ 'name': 'omni',
-  \ 'whitelist': ['*'],
-  \ 'blacklist': ['html'],
-  \ 'priority': 5,
-  \ 'completor': function('asyncomplete#sources#omni#completor')
-  \  }))
+" au User asyncomplete_setup
+"   \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+"   \ 'name': 'omni',
+"   \ 'whitelist': ['*'],
+"   \ 'blacklist': ['html'],
+"   \ 'priority': 5,
+"   \ 'completor': function('asyncomplete#sources#omni#completor')
+"   \  }))
 
-au User asyncomplete_setup
-  \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-  \ 'name': 'ultisnips',
-  \ 'whitelist': ['*'],
-  \ 'priority': 2,
-  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-  \ }))
+" au User asyncomplete_setup
+"   \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+"   \ 'name': 'ultisnips',
+"   \ 'whitelist': ['*'],
+"   \ 'priority': 2,
+"   \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+"   \ }))
 
-au User asyncomplete_setup
-  \ call asyncomplete#register_source(
-  \   asyncomplete#sources#tscompletejob#get_source_options({
-  \     'name': 'tscompletejob',
-  \     'whitelist': ['typescript'],
-  \     'priority': 4,
-  \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
-  \ }))
-
+" au User asyncomplete_setup
+"   \ call asyncomplete#register_source(
+"   \   asyncomplete#sources#tscompletejob#get_source_options({
+"   \     'name': 'tscompletejob',
+"   \     'whitelist': ['typescript'],
+"   \     'priority': 4,
+"   \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
+"   \ }))
 
 "  }}}
 
@@ -644,19 +644,20 @@ function! Status(winnr)
 
   let stat .= ' ' . Color(active, 4, active ? ' »' : ' «')
 
-  " git branch
-  if exists('*fugitive#head')
-    let head = fugitive#head()
+  " TODO: fix this startup problem
+  " " git branch
+  " if exists('*fugitive#head')
+  "   let head = fugitive#head()
 
-    if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
-      call fugitive#detect(getcwd())
-      let head = fugitive#head()
-    endif
-  endif
+  "   if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
+  "     call fugitive#detect(getcwd())
+  "     let head = fugitive#head()
+  "   endif
+  " endif
 
-  if !empty(head)
-    let stat .=  Color(active, 3, '  λ ') . head
-  endif
+  " if !empty(head)
+  "   let stat .=  Color(active, 3, '  λ ') . head
+  " endif
   " file modified
   let stat .= Color(active, 2, modified ? ' +' : '')
 
