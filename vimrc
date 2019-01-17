@@ -225,6 +225,7 @@ set colorcolumn=80  " show 80 column makr
 set background=dark
 set hidden
 set t_Co=256      " enable 256 color support"
+set nrformats=
 
 colorscheme gruvbox
 
@@ -441,56 +442,6 @@ let g:tern_show_signature_in_pum = 1
 
 
 let g:UltiSnipsSnippetsDir = ['UltiSnips']
-
-"  }}}
-
-" Asyncomplete --------------------------------------------------------------{{{
-
-" let g:asyncomplete_remove_duplicates = 1
-
-
-" au User lsp_setup call lsp#register_server({
-"   \ 'name': 'rls',
-"   \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-"   \ 'whitelist': ['rust'],
-"   \ 'priority': 99
-"   \ })
-
-" au User asyncomplete_setup
-"   \ call asyncomplete#register_source(
-"   \   asyncomplete#sources#buffer#get_source_options({
-"   \     'name': 'buffer',
-"   \     'whitelist': ['*'],
-"   \     'blacklist': ['go', 'cs'],
-"   \     'priority': 1,
-"   \     'completor': function('asyncomplete#sources#buffer#completor'),
-"   \ }))
-
-" au User asyncomplete_setup
-"   \ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-"   \ 'name': 'omni',
-"   \ 'whitelist': ['*'],
-"   \ 'blacklist': ['html'],
-"   \ 'priority': 5,
-"   \ 'completor': function('asyncomplete#sources#omni#completor')
-"   \  }))
-
-" au User asyncomplete_setup
-"   \ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-"   \ 'name': 'ultisnips',
-"   \ 'whitelist': ['*'],
-"   \ 'priority': 2,
-"   \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-"   \ }))
-
-" au User asyncomplete_setup
-"   \ call asyncomplete#register_source(
-"   \   asyncomplete#sources#tscompletejob#get_source_options({
-"   \     'name': 'tscompletejob',
-"   \     'whitelist': ['typescript'],
-"   \     'priority': 4,
-"   \     'completor': function('asyncomplete#sources#tscompletejob#completor'),
-"   \ }))
 
 "  }}}
 
