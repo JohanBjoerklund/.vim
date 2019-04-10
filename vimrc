@@ -405,6 +405,8 @@ map <leader>ss :Scratch<CR>
 
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '✖'
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
 " use global messages
 " let g:ale_set_loclist = 0
 " let g:ale_set_quickfix = 1
