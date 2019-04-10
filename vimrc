@@ -211,7 +211,9 @@ endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
-set termguicolors
+" set termguicolors
+set term=xterm
+set t_Co=256      " enable 256 color support"
 set relativenumber  " show relative liene numbers"
 set number          " show line numbers"
 set noshowmode      " do not show mode at bottom
@@ -224,7 +226,6 @@ set lazyredraw      " might improve scroll performance
 set colorcolumn=80  " show 80 column makr
 set background=dark
 set hidden
-set t_Co=256      " enable 256 color support"
 set nrformats=
 
 colorscheme gruvbox
