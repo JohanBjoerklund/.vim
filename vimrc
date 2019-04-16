@@ -92,8 +92,6 @@ endif
 
 " Insertmode text manipulation ---------------------------------------------{{{
 
-" Uppercas current word
-inoremap <C-u> <esc>viw<S-U>i
 
 "  }}}
 
@@ -509,6 +507,23 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
 
 "  }}}
+
+" LSP ----------------------------------------------------------------------{{{
+
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+  \ 'rust': ['rustup', 'run', 'stable', 'rls'] }
+
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'rls',
+  \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+  \ 'whitelist': ['rust'],
+  \ 'priority': 99
+  \ })
+
+autocmd FileType rust setlocal omnifunc=lsp#complete
+
+" }}}
 
 " Commands -----------------------------------------------------------------{{{
 
