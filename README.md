@@ -14,7 +14,7 @@ git submodule update
 
 ### Windows
 ```
-git clone https://github.com/JohanBjoerklund/.vim.git
+git clone https://github.com/JohanBjoerklund/.vim.git ~/vimfiles
 
 cd ~/vimfiles
 
