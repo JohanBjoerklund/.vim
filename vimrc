@@ -453,6 +453,7 @@ let g:OmniSharp_selector_ui = 'ctrlp'
 let g:OmniSharp_timeout = 5
 let g:OmniSharp_highlight_types = 1
 let g:OmniSharp_prefer_global_sln = 1
+let g:OmniSharp_want_snippet = 1
 
 
 " list of EndPoints (v2)
