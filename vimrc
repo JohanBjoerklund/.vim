@@ -151,6 +151,15 @@ augroup END
 
 " }}}
 
+" TypeScript -------------------------------------------------------------- {{{
+
+augroup ft_typescript
+  autocmd!
+  autocmd FileType markdown setlocal spell spelllang=en_us
+augroup END
+
+" }}}
+
 " VimScript --------------------------------------------------------------- {{{
 
 augroup ft_vimscript
@@ -208,6 +217,7 @@ else
 endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
+set spellfile = $HOME/vimfiles/spelling/en.utf-8.add
 
 " set termguicolors
 set term=xterm
