@@ -185,6 +185,7 @@ au Filetype qf wincmd K
 
 augroup ft_tag
   autocmd!
+  autocmd BufRead,BufNewFile *.riot setlocal filetype=riot
   autocmd FileType riot call tern#Enable()
 augroup END
 
