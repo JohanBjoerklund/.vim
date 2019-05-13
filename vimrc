@@ -218,7 +218,6 @@ else
 endif
 
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
-set spellfile = $HOME/vimfiles/spelling/en.utf-8.add
 
 " set termguicolors
 set term=xterm
