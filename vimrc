@@ -17,6 +17,14 @@ let maplocalleader = "\<space>"
 nnoremap <silent> <leader>cc :cclose<CR>
 nnoremap <silent> <leader>lc :lclose<CR>
 
+nnoremap <silent> zi :tabedit +<C-r>=line(".")<cr> %<cr>zz
+nnoremap <silent> Zi :only<cr>
+nnoremap <silent> zo :call ZoomOut()<cr>
+function! ZoomOut()
+    let linenr = line(".")
+    exec 'tabclose'
+    exec 'normal ' . linenr . 'G'
+endfunction
 "  }}}
 
 " Navigation ---------------------------------------------------------------{{{
