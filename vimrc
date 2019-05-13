@@ -170,7 +170,7 @@ augroup END
 
 augroup ft_qf
   autocmd!
-  autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
+  autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
 augroup END
 " }}}
 
