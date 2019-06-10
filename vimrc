@@ -244,6 +244,7 @@ set background=dark
 set hidden
 set nrformats=
 
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 if has('breakindent')
