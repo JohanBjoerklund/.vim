@@ -420,21 +420,13 @@ map <leader>ss :Scratch<CR>
 
 " Ale ----------------------------------------------------------------------{{{
 
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '✖'
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
-" use global messages
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
+let g:ale_sign_error = '◉'
+let g:ale_sign_warning = '◉'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 
 nmap <silent> cn :ALENext<CR>
 nmap <silent> cp :ALEPrevious<CR>
-" TODO: investigate why plug bindings doesn't work
-" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
