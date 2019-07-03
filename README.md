@@ -21,3 +21,9 @@ cd ~/vimfiles
 git submodule init
 git submodule update
 ```
+
+## Update
+```
+git submodule --update --recursive
+git pull origin master --recurse-submodules
+```
