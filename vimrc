@@ -205,13 +205,6 @@ au BufNewFile,BufRead .babelrc,.jshintrc setlocal ft=json
 
 " }}}
 
-" c# -----------------------------------------------------------------------{{{
-
-augroup ft_cake
-  autocmd!
-  autocmd BufRead,BufNewFile *.cake setlocal filetype=cs
-augroup END
-"  }}}
 
 " }}}
 
@@ -462,7 +455,6 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 let g:OmniSharp_selector_ui = 'ctrlp'
 let g:OmniSharp_timeout = 5
 let g:OmniSharp_highlight_types = 1
-let g:OmniSharp_prefer_global_sln = 1
 let g:OmniSharp_want_snippet = 1
 
 let g:OmniSharp_server_stdio = 1
