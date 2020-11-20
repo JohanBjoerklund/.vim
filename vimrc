@@ -2,7 +2,6 @@
 set nocompatible
 language messages en
 set shortmess+=sI
-
 " Mappings -----------------------------------------------------------------{{{
 
 " Leader -------------------------------------------------------------------{{{
@@ -174,6 +173,8 @@ augroup ft_vimscript
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
   autocmd Filetype vim setlocal modelines=1
+  autocmd Filetype vim nnoremap <buffer> <leader>s :w | source %
+
 augroup END
 
 augroup ft_qf
@@ -509,6 +510,12 @@ nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
 
 "  }}}
 
+" IndentLines --------------------------------------------------------------{{{
+
+let g:indentLine_fileTypeExclude = ['json']
+
+" }}}
+
 " LSP ----------------------------------------------------------------------{{{
 
 let g:LanguageClient_autoStart = 1
@@ -530,7 +537,7 @@ autocmd FileType rust setlocal omnifunc=lsp#complete
 
 
 function! s:Functions()
-  set guifont=Fira\ Code:h11
+  set guifont=FiraCode\ NF:h11
 endfunction
 command! Functions call s:Functions()
 
