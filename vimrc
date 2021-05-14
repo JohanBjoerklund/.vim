@@ -214,7 +214,7 @@ au BufNewFile,BufRead .babelrc,.jshintrc setlocal ft=json
 " GUI ----------------------------------------------------------------------{{{
 
 if has('win32')
-  set guifont=hack:h8
+  set guifont=hack:h9
 else
   set guifont=hack:h11
 endif
