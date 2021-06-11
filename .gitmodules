@@ -110,7 +110,7 @@
 	url = https://github.com/pangloss/vim-javascript.git
 [submodule "pack/all/start/ale"]
 	path = pack/all/start/ale
-	url = https://github.com/w0rp/ale.git
+	url = https://github.com/dense-analysis/ale.git
 [submodule "pack/all/start/vim-riot"]
 	path = pack/all/start/vim-riot
 	url = https://github.com/ryym/vim-riot.git
