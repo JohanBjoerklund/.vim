@@ -135,3 +135,6 @@
 [submodule "pack/all/start/vim-jsx-pretty"]
 	path = pack/all/start/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty.git
+[submodule ".\\pack\\all\\start\\vint"]
+	path = .\\pack\\all\\start\\vint
+	url = https://github.com/Vimjas/vint.git
