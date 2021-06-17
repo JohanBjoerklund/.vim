@@ -138,3 +138,6 @@
 [submodule ".\\pack\\all\\start\\vint"]
 	path = .\\pack\\all\\start\\vint
 	url = https://github.com/Vimjas/vint.git
+[submodule ".\\pack\\all\\start\\vader"]
+	path = .\\pack\\all\\start\\vader
+	url = https://github.com/junegunn/vader.vim.git
