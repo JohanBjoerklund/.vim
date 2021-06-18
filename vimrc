@@ -124,7 +124,6 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 " C# ---------------------------------------------------------------------- {{{
 augroup ft_bicep
   autocmd!
-  autocmd BufRead,BufNewFile *.bicep setlocal filetype=bicep
   autocmd FileType bicep setlocal omnifunc=ale#completion#OmniFunc
 augroup END
 
