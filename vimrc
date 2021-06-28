@@ -64,7 +64,6 @@ nnoremap gI `.
 nnoremap <BS> <C-^>
 
 " open buffer list
-nnoremap <leader>b :b <C-d>
 nnoremap gb :ls<CR>:b<space>
 
 set path+=**
@@ -224,7 +223,10 @@ endif
 set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
 " set termguicolors
-set term=xterm
+if !has('gui_running')
+  set term=xterm
+endif
+
 set t_Co=256      " enable 256 color support"
 set relativenumber  " show relative liene numbers"
 set number          " show line numbers"
@@ -292,6 +294,10 @@ endif
 
 " Misc----------------------------------------------------------------------{{{
 
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --smart-case\ --color=never
+endif
+
 syntax on
 filetype plugin indent on
 
@@ -336,61 +342,16 @@ set cpo+=$
 
 " Plugins ------------------------------------------------------------------{{{
 
-" CtrlP --------------------------------------------------------------------{{{
+" fzf ----------------------------------------------------------------------{{{
 
-if executable('rg')
-    set grepprg=rg\ --no-heading\ --smart-case\ --color=never
-    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-else
-    let g:ctrlp_user_command = has('win32') ? 'dir %s /-n /b /s /a-d' : 'find %s -type f'
-endif
+let g:rg_derive_root='true'
 
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+nnoremap <leader>b :Buffer<CR>
+nnoremap <C-p> :Files<CR>
 
-let g:ctrlp_root_markers = ['.tern-project']
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_lazy_update = 350
-let g:ctrlp_match_window = 'top,order:ttb'
-let g:ctrlp_reuse_window = 'netrw\|help'
-
-function! CtrlP_item_translator(item, mode)
-  if a:item == 'mru files'
-    retu 'mru'
-  elseif a:item == 'files' && a:mode == 'path'
-    retu 'path'
-  else
-    retu a:item
-  endif
-endfunction
-
-function! CtrlP_main_status(...)
-  let regex = a:3 ? '%2*regex %*' : ''
-  let prv = '%#StatusLineNC# '.a:4.' %*'
-  let item = ' ' . CtrlP_item_translator(a:5, a:2) . ' '
-  let nxt = '%#StatusLineNC# '.a:6.' %*'
-  let dir = '%#User3# ← %*%#StatusLineNC#' . fnamemodify(getcwd(), ':~') . '%* '
-
-  " only outputs current mode
-  retu ' %#User1#»%*' . item . '%#User1#«%* ' . '%=%<' . dir
-
-endfunction
-
-function! CtrlP_progress_status(...)
-  let len = '%#Function# '.a:1.' %*'
-  let dir = ' %=%<%#LineNr# '.getcwd().' %*'
-  retu len.dir
-endfunction
-
-let g:ctrlp_status_func = {
-  \ 'main': 'CtrlP_main_status',
-  \ 'prog': 'CtrlP_progress_status'
-  \}
-
-nmap <leader>f :CtrlP<CR><C-\>w
 
 "  }}}
+
 
 " GitGutter ----------------------------------------------------------------{{{
 
@@ -461,16 +422,50 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 let g:OmniSharp_selector_ui = 'ctrlp'
 let g:OmniSharp_timeout = 5
-let g:OmniSharp_highlight_types = 1
 let g:OmniSharp_want_snippet = 1
-
-let g:OmniSharp_server_stdio = 1
 
 augroup omnisharp_commands
   autocmd!
+" " Show type information automatically when the cursor stops moving.
+"   " Note that the type is echoed to the Vim command line, and will overwrite
+"   " any other messages in this space including e.g. ALE linting messages.
+"   autocmd CursorHold *.cs OmniSharpTypeLookup
+
+"   " The following commands are contextual, based on the cursor position.
+"   autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osfu <Plug>(omnisharp_find_usages)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osfi <Plug>(omnisharp_find_implementations)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>ospd <Plug>(omnisharp_preview_definition)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>ospi <Plug>(omnisharp_preview_implementations)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>ost <Plug>(omnisharp_type_lookup)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osd <Plug>(omnisharp_documentation)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osfs <Plug>(omnisharp_find_symbol)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osfx <Plug>(omnisharp_fix_usings)
+"   autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+"   autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+
+"   " Navigate up and down by method/property/field
+"   autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+"   autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+"   " Find all code errors/warnings for the current solution and populate the quickfix window
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osgcc <Plug>(omnisharp_global_code_check)
+"   " Contextual code actions (uses fzf, vim-clap, CtrlP or unite.vim selector when available)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+"   autocmd FileType cs xmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+"   " Repeat the last code action performed (does not use a selector)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+"   autocmd FileType cs xmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>os= <Plug>(omnisharp_code_format)
+
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osnm <Plug>(omnisharp_rename)
+
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osre <Plug>(omnisharp_restart_server)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
+"   autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
 
   " Show type information automatically when the cursor stops moving
-  " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+  autocmd CursorHold *.cs OmniSharpTypeLookup
 
   " The following commands are contextual, based on the cursor position.
   autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
