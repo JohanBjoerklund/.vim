@@ -66,8 +66,6 @@ nnoremap <BS> <C-^>
 " open buffer list
 nnoremap <leader>b :b <C-d>
 nnoremap gb :ls<CR>:b<space>
-" jump to previously edited buffer
-nnoremap <leader>q :b#<C-r>
 
 set path+=**
 "  }}}
@@ -162,7 +160,7 @@ augroup END
 
 " }}}
 
-" TypeScript -------------------------------------------------------------- {{{
+" Markdown ---------------------------------------------------------------- {{{
 
 augroup ft_typescript
   autocmd!
@@ -418,8 +416,8 @@ map <leader>ss :Scratch<CR>
 
 " Ale ----------------------------------------------------------------------{{{
 
-let g:ale_sign_error = '◉'
-let g:ale_sign_warning = '◉'
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
@@ -433,6 +431,10 @@ let g:ale_linters = {
   \ 'cs': ['OmniSharp']
   \}
 
+let g:ale_fixers = {
+  \ 'javascript': ['eslint']
+  \}
+let g:ale_fix_on_save = 1
 
 let g:ale_linter_aliases = { 'riot': ['javascript'] }
 
