@@ -1,6 +1,6 @@
 "This must be first, because it changes other options as a side effect.
 set nocompatible
-language messages en
+language messages C
 set shortmess+=sI
 " Mappings -----------------------------------------------------------------{{{
 
@@ -224,10 +224,10 @@ set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
 
 " set termguicolors
 if !has('gui_running')
-  set term=xterm
+  set term=screen-256color
 endif
 
-set t_Co=256      " enable 256 color support"
+set t_Co=256        " enable 256 color support"
 set relativenumber  " show relative liene numbers"
 set number          " show line numbers"
 set noshowmode      " do not show mode at bottom
@@ -345,6 +345,10 @@ set cpo+=$
 " fzf ----------------------------------------------------------------------{{{
 
 let g:rg_derive_root='true'
+
+if has('unix')
+  set rtp+=~/.fzf
+endif
 
 nnoremap <leader>b :Buffer<CR>
 nnoremap <C-p> :Files<CR>
@@ -509,6 +513,7 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 " Add syntax highlighting for types and interfaces
 nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
 
+command! -nargs=0 Ttt :call fugitive#head()
 "  }}}
 
 " IndentLines --------------------------------------------------------------{{{
@@ -622,22 +627,14 @@ function! Status(winnr)
     let stat .= '%f'
   endif
 
-  let stat .= ' ' . Color(active, 4, active ? ' »' : ' «')
+  let stat .= Color(active, 4, active ? ' »' : ' «')
 
-  " TODO: fix this startup problem
-  " " git branch
-  " if exists('*fugitive#head')
-  "   let head = fugitive#head()
+  " git
+  let head = fugitive#head()
+  if !empty(head)
+    let stat .= Color(active, 3, '  λ ') . head
+  endif
 
-  "   if empty(head) && exists('*fugitive#detect') && !exists('b:git_dir')
-  "     call fugitive#detect(getcwd())
-  "     let head = fugitive#head()
-  "   endif
-  " endif
-
-  " if !empty(head)
-  "   let stat .=  Color(active, 3, '  λ ') . head
-  " endif
   " file modified
   let stat .= Color(active, 2, modified ? ' +' : '')
 
@@ -654,7 +651,6 @@ function! Status(winnr)
 
   " window
   let stat .= Color(1, 1,' N° ' . a:winnr)
-
   return stat
 endfunction
 
@@ -669,20 +665,13 @@ augroup status
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
 augroup END
 
-hi User1 ctermfg=04  ctermbg=19 guifg=#83a598 guibg=#504945
-hi User2 ctermfg=01  ctermbg=19 guifg=#fb4934 guibg=#504945
-hi User3 ctermfg=02  ctermbg=19 guifg=#b8bb26 guibg=#504945
-hi User4 ctermfg=06  ctermbg=19 guifg=#8ec07c guibg=#504945
-hi User5 ctermfg=03  ctermbg=19 guifg=#fabd21 guibg=#504945
+hi User1 ctermfg=109 ctermbg=239 guifg=#83a598 guibg=#504945
+hi User2 ctermfg=167 ctermbg=239 guifg=#fb4934 guibg=#504945
+hi User3 ctermfg=142 ctermbg=239 guifg=#b8bb26 guibg=#504945
+hi User4 ctermfg=108 ctermbg=239 guifg=#8ec07c guibg=#504945
+hi User5 ctermfg=214 ctermbg=239 guifg=#fabd21 guibg=#504945
+
 "  }}}
-
-" Local --------------------------------------------------------------------{{{
-
-if filereadable(glob('$HOME/.vimrc.local'))
-  source $HOME/.vimrc.local
-endif
-
-" }}}
 
 " Tabs ---------------------------------------------------------------------{{{
 
