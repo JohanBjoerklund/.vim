@@ -121,6 +121,9 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 " C# ---------------------------------------------------------------------- {{{
 augroup ft_bicep
   autocmd!
+  if has('unix')
+    let g:bicep_bicep_ls = "dotnet /usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
+  endif
   autocmd FileType bicep setlocal omnifunc=ale#completion#OmniFunc
 augroup END
 
