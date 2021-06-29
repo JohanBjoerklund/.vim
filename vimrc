@@ -406,6 +406,27 @@ let g:ale_fix_on_save = 1
 
 let g:ale_linter_aliases = { 'riot': ['javascript'] }
 
+if has('unix')
+  packloadall
+  call ale#linter#Define('bicep', {
+  \   'name': 'bicep-ls',
+  \   'lsp': 'stdio',
+  \   'executable': 'dotnet',
+  \   'command': '%e /usr/local/bin/bicep-langserver/Bicep.LangServer.dll',
+  \   'project_root': '.'
+  \})
+endif
+
+if has('win32')
+  packloadall
+  call ale#linter#Define('bicep', {
+  \   'name': 'bicep-ls',
+  \   'lsp': 'stdio',
+  \   'executable': 'C:\Users/JohanBjorklund/.bicep/bicep-langserver/Bicep.LangServer.exe',
+  \   'command': '%e',
+  \   'project_root': '.'
+  \})
+endif
 "  }}}
 
 " Tern ---------------------------------------------------------------------{{{
