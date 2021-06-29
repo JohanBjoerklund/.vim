@@ -349,12 +349,8 @@ set cpo+=$
 
 let g:rg_derive_root='true'
 
-if has('unix')
-  set rtp+=~/.fzf
-endif
-
 nnoremap <leader>b :Buffer<CR>
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 
 
 "  }}}
