@@ -118,14 +118,14 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 
 " FileType -----------------------------------------------------------------{{{
 
-" C# ---------------------------------------------------------------------- {{{
+" bicep ------------------------------------------------------------------- {{{
 augroup ft_bicep
   autocmd!
-  if has('unix')
-    let g:bicep_bicep_ls = "dotnet /usr/local/bin/bicep-langserver/Bicep.LangServer.dll"
-  endif
   autocmd FileType bicep setlocal omnifunc=ale#completion#OmniFunc
 augroup END
+" }}}
+"
+" C# ---------------------------------------------------------------------- {{{
 
 augroup ft_cs
   autocmd!
@@ -164,7 +164,7 @@ augroup END
 
 " Markdown ---------------------------------------------------------------- {{{
 
-augroup ft_typescript
+augroup ft_markdown
   autocmd!
   autocmd FileType markdown setlocal spell spelllang=en_us
 augroup END
@@ -178,16 +178,16 @@ augroup ft_vimscript
   autocmd FileType vim setlocal foldmethod=marker
   autocmd Filetype vim setlocal modelines=1
   autocmd Filetype vim nnoremap <buffer> <leader>s :w | source %
-
 augroup END
+
+" }}}
+
+" QuickFix ---------------------------------------------------------------- {{{
 
 augroup ft_qf
   autocmd!
   autocmd FileType qf nmap <buffer> <cr> <cr>:ccl<cr>
 augroup END
-" }}}
-
-" QuickFix ---------------------------------------------------------------- {{{
 
 au BufWinEnter quickfix setlocal number& relativenumber&
 au Filetype qf wincmd K
@@ -539,23 +539,6 @@ command! -nargs=0 Ttt :call fugitive#head()
 " IndentLines --------------------------------------------------------------{{{
 
 let g:indentLine_fileTypeExclude = ['json']
-
-" }}}
-
-" LSP ----------------------------------------------------------------------{{{
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rustup', 'run', 'stable', 'rls'] }
-
-au User lsp_setup call lsp#register_server({
-  \ 'name': 'rls',
-  \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-  \ 'whitelist': ['rust'],
-  \ 'priority': 99
-  \ })
-
-autocmd FileType rust setlocal omnifunc=lsp#complete
 
 " }}}
 

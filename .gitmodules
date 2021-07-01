@@ -50,10 +50,6 @@
 	path = pack/all/start/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
         ignore = untracked
-[submodule "bundle/base16-vim"]
-	path = pack/all/start/base16-vim
-	url = https://github.com/chriskempson/base16-vim.git
-        ignore = untracked
 [submodule "bundle/ultisnips"]
 	path = pack/all/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -106,12 +102,6 @@
 [submodule "pack/all/start/vim-riot"]
 	path = pack/all/start/vim-riot
 	url = https://github.com/ryym/vim-riot.git
-[submodule "pack/all/start/async.vim"]
-	path = pack/all/start/async.vim
-	url = https://github.com/prabirshrestha/async.vim
-[submodule "pack/all/start/vim-lsp"]
-	path = pack/all/start/vim-lsp
-	url = https://github.com/prabirshrestha/vim-lsp
 [submodule "pack/all/start/rust.vim"]
 	path = pack/all/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
