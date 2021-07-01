@@ -134,6 +134,13 @@ augroup END
 
 " }}}
 
+" GraphQL ----------------------------------------------------------------- {{{
+augroup ft_graphql
+  autocmd!
+ autocmd BufNewFile,BufRead *.prisma setfiletype graphql
+augroup END
+" }}}
+
 " HTML -------------------------------------------------------------------- {{{
 
 augroup ft_html
@@ -387,8 +394,10 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
-nmap <silent> cn :ALENext<CR>
-nmap <silent> cp :ALEPrevious<CR>
+set omnifunc=ale#completion#OmniFunc
+
+nmap <silent> cn <Plug>(ale_next_wrap)
+nmap <silent> cp <Plug>(ale_previous_wrap)
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
@@ -433,7 +442,7 @@ nnoremap <localleader>rr :TernRename<CR>
 nnoremap <localleader>r :TernRef<CR>
 nnoremap <localleader>d :TernDef<CR>
 
-let g:tern_show_signature_in_pum = 1
+" let g:tern_show_signature_in_pum = 1
 
 "  }}}
 
