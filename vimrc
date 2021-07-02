@@ -135,10 +135,24 @@ augroup END
 " }}}
 
 " GraphQL ----------------------------------------------------------------- {{{
+
 augroup ft_graphql
   autocmd!
- autocmd BufNewFile,BufRead *.prisma setfiletype graphql
+  autocmd BufNewFile,BufRead *.prisma setfiletype graphql
 augroup END
+
+" }}}
+
+" Markdown ---------------------------------------------------------------- {{{
+
+let g:markdown_fenced_languages = ['javascript', 'sh', 'shell=sh', 'yaml', 'cs', 'json']
+let g:markdown_minlines = 100
+
+augroup ft_markdown
+  autocmd!
+  autocmd FileType markdown setlocal textwidth=100
+augroup END
+
 " }}}
 
 " HTML -------------------------------------------------------------------- {{{
