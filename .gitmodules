@@ -126,6 +126,7 @@
 [submodule "pack/all/start/vim-bicep"]
 	path = pack/all/start/vim-bicep
 	url = https://github.com/JohanBjoerklund/vim-bicep.git
+        branch = main
 [submodule "pack/all/start/fzf.vim"]
 	path = pack/all/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
