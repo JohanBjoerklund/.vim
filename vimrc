@@ -693,7 +693,7 @@ augroup END
 
 function! s:GitFStat(active, head)
 
-  let result = system("git status -s -- " . bufname('%'))
+  let result = system("git status -s -- " . shellescape(bufname('%')))
   let readonly = getbufvar('%', '&ro')
 
   let res = ''
