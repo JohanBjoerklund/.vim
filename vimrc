@@ -403,8 +403,8 @@ let g:ale_lint_on_insert_leave = 1
 
 set omnifunc=ale#completion#OmniFunc
 
-nmap <silent> cn <Plug>(ale_next_wrap)
-nmap <silent> cp <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
+nmap <silent> [e <Plug>(ale_previous_wrap)
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
