@@ -376,14 +376,6 @@ let g:fzf_layout = { 'window' : { 'width': 0.9, 'height': 0.6, 'highlight': 'Nor
 nnoremap <leader>b :Buffer<CR>
 nnoremap <C-p> :GFiles<CR>
 
-
-"  }}}
-
-
-" GitGutter ----------------------------------------------------------------{{{
-
-nnoremap <leader>gp <Plug>GitGutterPreviewHunk
-
 "  }}}
 
 " Netrw --------------------------------------------------------------------{{{
@@ -451,6 +443,11 @@ if has('win32')
 endif
 "  }}}
 
+" GitGutter ----------------------------------------------------------------{{{
+
+let g:gitgutter_preview_win_floating = 1
+
+"  }}}
 " Tern ---------------------------------------------------------------------{{{
 
 nnoremap <localleader>rr :TernRename<CR>
