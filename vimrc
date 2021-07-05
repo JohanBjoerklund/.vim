@@ -706,15 +706,15 @@ function! s:GitFStat(active, head)
   endif
 
   if l:result[1] ==? 'M' || l:result[1] ==? 'A' || l:result[1] ==? 'D'
-    let res .= s:Color(a:active, 5, ' λ')
+    let res = s:Color(a:active, 5, ' λ')
   endif
 
   if l:result[0] ==? 'M' || l:result[0] ==? 'A' || l:result[0] ==? 'D'
-    let l:res .= s:Color(a:active, 5, ' λ➔')
+    let l:res = s:Color(a:active, 5, ' λ➔')
   endif
 
   if l:res ==? ''
-    let res .= s:Color(a:active, 3, ' λ')
+    let res = s:Color(a:active, 3, ' λ')
   endif
 
   let l:res .= ' '
