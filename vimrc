@@ -585,6 +585,14 @@ set laststatus=2
 set encoding=utf-8
 set langmenu=en_US.UTF-8
 
+function! s:Color(active, num, content)
+  if a:active
+    return '%' . a:num . '*' . a:content . '%*'
+  else
+    return a:content
+  endif
+endfunction
+
 function! Status(winnr)
   let stat = ''
   let active = winnr() == a:winnr
@@ -594,39 +602,23 @@ function! Status(winnr)
   let readonly = getbufvar(buffer, '&ro')
   let fname = bufname(buffer)
 
-  function! Color(active, num, content)
-    if a:active
-      return '%' . a:num . '*' . a:content . '%*'
-    else
-      return a:content
-    endif
-  endfunction
 
   " file
-  let stat .= Color(active, 4, active ? ' «' : ' »')
-  let stat .= ' %<'
-
-  if fname == '__Gundo__'
-    let stat .= 'Gundo'
-  elseif fname == '__Gundo_Preview__'
-    let stat .= 'Gundo Preview'
-  else
-    let stat .= '%f'
-  endif
-
-  let stat .= Color(active, 4, active ? ' »' : ' «')
+  let stat .= s:Color(l:active, 4, l:active ? ' «' : ' »')
+  let stat .= ' %<%f'
+  let stat .= s:Color(l:active, 4, l:active ? ' »' : ' «')
 
   " git
   let head = fugitive#head()
   if !empty(head)
-    let stat .= Color(active, 3, '  λ ') . head
+    let stat .= s:GitFStat(l:active, l:head)
   endif
 
   " file modified
-  let stat .= Color(active, 2, modified ? ' +' : '')
+  let stat .= s:Color(l:active, 2, l:modified ? ' +' : '')
 
   " read only
-  let stat .= Color(active, 2, readonly ? ' ‼' : '')
+  let stat .= s:Color(l:active, 2, l:readonly ? ' ‼' : '')
 
   " paste
   if active && &paste
@@ -637,7 +629,7 @@ function! Status(winnr)
   let stat .= '%='
 
   " window
-  let stat .= Color(1, 1,' N° ' . a:winnr)
+  let stat .= s:Color(1, 1,' N° ' . a:winnr)
   return stat
 endfunction
 
@@ -659,46 +651,6 @@ hi User4 ctermfg=108 ctermbg=239 guifg=#8ec07c guibg=#504945
 hi User5 ctermfg=214 ctermbg=239 guifg=#fabd21 guibg=#504945
 
 "  }}}
-
-" Tabs ---------------------------------------------------------------------{{{
-
-set guioptions-=e
-function SetTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    " select the highlighting
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-
-    call settabvar(tabpagenr(), 'tablabel', fnamemodify(finddir('.git', '.;'), ':h:t'))
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T'
-
-    " the label is made by MyTabLabel()
-    let s .= ' %{GetTabLabel(' . (i + 1) . ')} '
-  endfor
-
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-
-  " right-align the label to close the current tab page
-  if tabpagenr('$') > 1
-    let s .= '%=%#TabLine#%999Xclose'
-  endif
-
-  return s
-endfunction
-
-function GetTabLabel(n)
-  return gettabvar(a:n, 'tablabel')
-endfunction
-
-set tabline=%!SetTabLine()
-
-" }}}
 
 " Cursor -------------------------------------------------------------------{{{
 
@@ -738,5 +690,37 @@ augroup cursorline
 augroup END
 
 "  }}}
+
+function! s:GitFStat(active, head)
+
+  let result = system("git status -s -- " . bufname('%'))
+  let readonly = getbufvar('%', '&ro')
+
+  let res = ''
+  if l:readonly == 1
+    return res
+  endif
+
+  if a:active == 0
+    return s:Color(a:active, 0, ' λ ') . a:head
+  endif
+
+  if l:result[1] ==? 'M' || l:result[1] ==? 'A' || l:result[1] ==? 'D'
+    let res .= s:Color(a:active, 5, ' λ')
+  endif
+
+  if l:result[0] ==? 'M' || l:result[0] ==? 'A' || l:result[0] ==? 'D'
+    let l:res .= s:Color(a:active, 5, ' λ➔')
+  endif
+
+  if l:res ==? ''
+    let res .= s:Color(a:active, 3, ' λ')
+  endif
+
+  let l:res .= ' '
+
+  return l:res . a:head
+
+endfunction
 
 " vim:foldmethod=marker:foldlevel=0
