@@ -355,7 +355,8 @@ set wildignore+=*.exe
 set wildignore+=*/node_modules/*
 set wildignore+=*/elm-stuff/*
 
-set completeopt=longest,menuone " Turn off preview
+set completeopt=longest,menuone,popuphidden
+set completepopup=highlight:Pmenu,border:off
 set shortmess+=c " Turn off comletion messages
 
 set cpo+=$
@@ -461,7 +462,6 @@ nnoremap <localleader>d :TernDef<CR>
 "  }}}
 
 " UltiSnips -----------------------------------------------------------------{{{
-
 
 let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
