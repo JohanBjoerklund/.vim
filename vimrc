@@ -694,34 +694,35 @@ augroup END
 
 function! s:GitFStat(active, head)
 
-  let result = system("git status -s -- " . shellescape(bufname('%')))
-  let readonly = getbufvar('%', '&ro')
+  " let result = system("git status -s -- " . shellescape(bufname('%')))
+  " let readonly = getbufvar('%', '&ro')
 
-  let res = ''
-  if l:readonly == 1
-    return res
-  endif
+  " let res = ''
+  " if l:readonly == 1
+  "   return res
+  " endif
 
-  if a:active == 0
-    return s:Color(a:active, 0, ' λ ') . a:head
-  endif
+  " if a:active == 0
+  "   return s:Color(a:active, 0, ' λ ') . a:head
+  " endif
 
-  if l:result[1] ==? 'M' || l:result[1] ==? 'A' || l:result[1] ==? 'D'
-    let res = s:Color(a:active, 5, ' λ')
-  endif
+  " if l:result[1] ==? 'M' || l:result[1] ==? 'A' || l:result[1] ==? 'D'
+  "   let res = s:Color(a:active, 5, ' λ')
+  " endif
 
-  if l:result[0] ==? 'M' || l:result[0] ==? 'A' || l:result[0] ==? 'D'
-    let l:res = s:Color(a:active, 5, ' λ➔')
-  endif
+  " if l:result[0] ==? 'M' || l:result[0] ==? 'A' || l:result[0] ==? 'D'
+  "   let l:res = s:Color(a:active, 5, ' λ➔')
+  " endif
 
-  if l:res ==? ''
-    let res = s:Color(a:active, 3, ' λ')
-  endif
+  " if l:res ==? ''
+  "   let res = s:Color(a:active, 3, ' λ')
+  " endif
 
-  let l:res .= ' '
+  " let l:res .= ' '
 
-  return l:res . a:head
+  " return l:res . a:head
 
+  return s:Color(a:active, 3, ' λ ') . a:head
 endfunction
 
 " vim:foldmethod=marker:foldlevel=0
