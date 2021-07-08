@@ -390,7 +390,8 @@ let g:netrw_bufsettings= 'nomodifiable nomodified readonly nobuflisted norwrap n
 
 " Scratch ------------------------------------------------------------------{{{
 
-map <leader>ss :Scratch<CR>
+let g:scratch_insert_autohide = 0
+let g:scratch_persistence_file = $HOME . "/.scratch_session"
 
 "  }}}
 
