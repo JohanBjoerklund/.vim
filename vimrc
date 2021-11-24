@@ -467,6 +467,10 @@ let g:UltiSnipsSnippetsDir = ['UltiSnips']
 
 " OmniSharp ----------------------------------------------------------------{{{
 
+if has('unix') " WSL2 needs a proxy to work with OmniSharp.
+  let g:OmniSharp_server_path = '/mnt/c/Users/JohanBjorklund/src/StdioProxy/bin/Debug/net5.0/StdioProxy.exe'
+endif
+
 let g:OmniSharp_selector_ui = 'fzf'
 let g:OmniSharp_selector_findusages = 'fzf'
 let g:OmniSharp_timeout = 5
