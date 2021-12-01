@@ -139,3 +139,6 @@
 [submodule "pack/all/start/vim-alt-mappings"]
 	path = pack/all/start/vim-alt-mappings
 	url = git@github.com:vim-utils/vim-alt-mappings.git
+[submodule "pack/all/start/vimspector"]
+	path = pack/all/start/vimspector
+	url = git@github.com:puremourning/vimspector.git
