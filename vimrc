@@ -2,6 +2,9 @@
 set nocompatible
 language messages C
 set shortmess+=sI
+set updatetime=100 "Fix slow gitgutter updates
+set signcolumn=yes
+
 " Mappings -----------------------------------------------------------------{{{
 
 " Leader -------------------------------------------------------------------{{{
@@ -397,8 +400,8 @@ let g:scratch_persistence_file = $HOME . "/.scratch_session"
 
 " Ale ----------------------------------------------------------------------{{{
 
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '!'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
@@ -644,6 +647,10 @@ function! SetStatus()
   endfor
 endfunction
 
+function! s:GitFStat(active, head)
+  return s:Color(a:active, 3, '  ') . a:head
+endfunction
+
 augroup status
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter,BufUnload * call SetStatus()
@@ -676,11 +683,9 @@ if &term =~ "screen-256color\\|xterm\\|rxvt"
     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   else
-
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
   endif
-
 endif
 
 hi InsertCursor  ctermfg=15 ctermbg=04  guibg=#458588  guifg=#ebdbb2
@@ -696,37 +701,6 @@ augroup END
 
 "  }}}
 
-function! s:GitFStat(active, head)
-
-  " let result = system("git status -s -- " . shellescape(bufname('%')))
-  " let readonly = getbufvar('%', '&ro')
-
-  " let res = ''
-  " if l:readonly == 1
-  "   return res
-  " endif
-
-  " if a:active == 0
-  "   return s:Color(a:active, 0, ' λ ') . a:head
-  " endif
-
-  " if l:result[1] ==? 'M' || l:result[1] ==? 'A' || l:result[1] ==? 'D'
-  "   let res = s:Color(a:active, 5, ' λ')
-  " endif
-
-  " if l:result[0] ==? 'M' || l:result[0] ==? 'A' || l:result[0] ==? 'D'
-  "   let l:res = s:Color(a:active, 5, ' λ➔')
-  " endif
-
-  " if l:res ==? ''
-  "   let res = s:Color(a:active, 3, ' λ')
-  " endif
-
-  " let l:res .= ' '
-
-  " return l:res . a:head
-
-  return s:Color(a:active, 3, ' λ ') . a:head
-endfunction
+command Todo noautocmd vimgrep /TODO/j ** | cw
 
 " vim:foldmethod=marker:foldlevel=0
