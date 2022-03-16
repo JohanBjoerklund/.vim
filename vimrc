@@ -399,6 +399,11 @@ let g:scratch_persistence_file = $HOME . "/.scratch_session"
 "  }}}
 
 " Ale ----------------------------------------------------------------------{{{
+" Start Fix for using eslint with zero install yarn
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'yarn'
+let g:ale_javascript_eslint_options = 'run eslint'
+" End fix for using eslint with zero install yarn
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
@@ -412,6 +417,7 @@ nmap <silent> [e <Plug>(ale_previous_wrap)
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
+  \ 'typescript': ['eslint'],
   \ 'riot': ['eslint'],
   \ 'rust': ['rls'],
   \ 'cs': ['OmniSharp']
