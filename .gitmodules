@@ -87,9 +87,6 @@
 [submodule "pack/all/start/vim-textobj-variable-segment"]
 	path = pack/all/start/vim-textobj-variable-segment
 	url = https://github.com/Julian/vim-textobj-variable-segment.git
-[submodule "pack/all/start/yats.vim"]
-	path = pack/all/start/yats.vim
-	url = https://github.com/HerringtonDarkholme/yats.vim.git
 [submodule "pack/all/start/html5.vim"]
 	path = pack/all/start/html5.vim
 	url = https://github.com/othree/html5.vim.git
@@ -145,3 +142,6 @@
 [submodule "pack/all/start/vim-rzip"]
 	path = pack/all/start/vim-rzip
 	url = git@github.com:lbrayner/vim-rzip.git
+[submodule "pack/all/start/typescript-vim"]
+	path = pack/all/start/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
