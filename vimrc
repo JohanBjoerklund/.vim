@@ -180,7 +180,7 @@ augroup END
 
 augroup ft_typescript
   autocmd!
-  autocmd FileType typescript setlocal tabstop=4 shiftwidth=4
+  autocmd FileType typescript setlocal tabstop=2 shiftwidth=2
   autocmd BufRead,BufNewFile *.ts,*.tsx setlocal filetype=typescript
 augroup END
 
@@ -417,7 +417,6 @@ nmap <silent> [e <Plug>(ale_previous_wrap)
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
-  \ 'typescript': ['eslint'],
   \ 'riot': ['eslint'],
   \ 'rust': ['rls'],
   \ 'cs': ['OmniSharp']
