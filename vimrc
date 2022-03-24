@@ -180,7 +180,7 @@ augroup END
 
 augroup ft_typescript
   autocmd!
-  autocmd FileType typescript setlocal tabstop=2 shiftwidth=2
+  autocmd FileType typescript setlocal tabstop=2 shiftwidth=2 omnifunc=ale#completion#OmniFunc
   autocmd BufRead,BufNewFile *.ts,*.tsx setlocal filetype=typescript
 augroup END
 
