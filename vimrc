@@ -322,7 +322,7 @@ endif
 " Misc----------------------------------------------------------------------{{{
 
 if executable('rg')
-    set grepprg=rg\ --no-heading\ --smart-case\ --color=never
+  set grepprg=rg\ --no-heading\ --smart-case\ --color=never
 endif
 
 syntax on
@@ -357,6 +357,7 @@ set wildignore+=*.png
 set wildignore+=*.exe
 set wildignore+=*/node_modules/*
 set wildignore+=*/elm-stuff/*
+set wildignore+=*/.yarn/*
 
 set completeopt=longest,menuone,popuphidden
 set completepopup=highlight:Pmenu,border:off
@@ -394,7 +395,7 @@ let g:rg_derive_root='true'
 let g:fzf_layout = { 'window' : { 'width': 0.9, 'height': 0.6, 'highlight': 'Normal'  }  }
 
 nnoremap <leader>b :Buffer<CR>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :Files<CR>
 
 "  }}}
 
