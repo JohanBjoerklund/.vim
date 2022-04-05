@@ -145,3 +145,6 @@
 [submodule "pack/all/start/typescript-vim"]
 	path = pack/all/start/typescript-vim
 	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "pack/all/start/vim-terraform"]
+	path = pack/all/start/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
