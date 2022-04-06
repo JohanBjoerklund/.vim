@@ -121,6 +121,13 @@ onoremap <silent> il{ :<c-u>normal! F}vi{<cr>
 
 " FileType -----------------------------------------------------------------{{{
 
+" terraform --------------------------------------------------------------- {{{
+augroup ft_terraform
+  autocmd!
+  autocmd FileType terraform setlocal omnifunc=ale#completion#OmniFunc
+augroup END
+" }}}
+
 " bicep ------------------------------------------------------------------- {{{
 augroup ft_bicep
   autocmd!
@@ -437,11 +444,13 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'riot': ['eslint'],
   \ 'rust': ['rls'],
-  \ 'cs': ['OmniSharp']
+  \ 'cs': ['OmniSharp'],
+  \ 'terraform': ['terraform', 'terraform_ls']
   \}
 
 let g:ale_fixers = {
-  \ 'javascript': ['eslint']
+  \ 'javascript': ['eslint'],
+  \ 'terraform': ['terraform']
   \}
 let g:ale_fix_on_save = 1
 
