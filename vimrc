@@ -437,8 +437,11 @@ let g:ale_lint_on_insert_leave = 1
 
 set omnifunc=ale#completion#OmniFunc
 
+nnoremap <silent> <Plug>(ale_find_references_relative) :ALEFindReferences -relative<Return>
 nmap <silent> ]e <Plug>(ale_next_wrap)
 nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> <leader>gd <Plug>(ale_go_to_definition)
+nmap <silent> <leader>fu <Plug>(ale_find_references_relative)
 
 let g:ale_linters = {
   \ 'javascript': ['eslint'],
