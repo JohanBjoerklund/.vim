@@ -402,7 +402,7 @@ let g:rg_derive_root='true'
 let g:fzf_layout = { 'window' : { 'width': 0.9, 'height': 0.6, 'highlight': 'Normal'  }  }
 
 nnoremap <leader>b :Buffer<CR>
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :execute ':Files ' . fnamemodify(finddir('.git',';'), ':h')<CR>
 
 "  }}}
 
